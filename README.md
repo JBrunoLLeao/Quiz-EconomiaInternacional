@@ -1,6 +1,6 @@
-# 🧠 Quiz Deep Learning — CNN / RNN / Regularização
+# 🧠 Quiz Economia Internacional
 
-50 perguntas difíceis sobre CNN, RNN e Regularização com explicações detalhadas.
+50 perguntas
 
 ## Como rodar
 
@@ -26,7 +26,7 @@ quiz_dl/
 
 ## Funcionalidades
 
-- ✅ 50 perguntas difíceis organizadas por tema (CNN / RNN / Regularização)
+- ✅ 50 perguntas difíceis organizadas por tema (
 - ✅ Feedback imediato após cada resposta (certo/errado + explicação técnica)
 - ✅ Barra de progresso visual
 - ✅ Revisão de erros ao final com explicações
