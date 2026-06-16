@@ -1,1090 +1,1159 @@
 QUESTIONS = [
 
     # ══════════════════════════════════════════════════════
-    # CNN (Q1–18)
+    # MODELO PADRÃO DE COMÉRCIO — Termos de troca e crescimento (Q1–10)
     # ══════════════════════════════════════════════════════
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "No código MNIST do slide, a primeira camada Conv2D(32, (3,3)) "
-            "recebe entrada (28,28,1) e produz saída (26,26,32). "
-            "Por que a dimensão espacial diminuiu de 28 para 26?"
+            "No modelo padrão de comércio, os termos de troca de um país são definidos "
+            "como a razão entre o preço de seus bens exportados e o preço de seus bens "
+            "importados (Px/Pm). O que significa uma MELHORA nos termos de troca de um país?"
         ),
         "options": [
-            "A) Porque o stride padrão é 2",
-            "B) Porque o padding padrão é 'valid', e um filtro 3×3 sem padding reduz cada dimensão em 2",
-            "C) Porque o max-pooling é aplicado automaticamente após cada convolução",
-            "D) Porque o ReLU remove as bordas da imagem",
+            "A) O país está exportando uma quantidade maior de bens, independentemente do preço",
+            "B) O preço relativo de suas exportações aumentou em relação ao preço de suas importações, permitindo obter mais importações por unidade exportada",
+            "C) O país reduziu suas tarifas de importação, barateando os bens estrangeiros",
+            "D) A balança comercial do país tornou-se superavitária",
         ],
-        "answer": "B) Porque o padding padrão é 'valid', e um filtro 3×3 sem padding reduz cada dimensão em 2",
+        "answer": "B) O preço relativo de suas exportações aumentou em relação ao preço de suas importações, permitindo obter mais importações por unidade exportada",
         "explanation": (
-            "Com padding='valid' (padrão no Keras), o filtro só é aplicado onde "
-            "cabe inteiramente dentro da entrada. Para um filtro 3×3, perde-se "
-            "1 pixel em cada lado → 28 - 3 + 1 = 26. Nenhum pooling ou ReLU "
-            "afeta dimensões espaciais dessa forma."
+            "Termos de troca = Px/Pm. Uma melhora significa que essa razão sobe, ou seja, "
+            "cada unidade exportada passa a comprar mais unidades importadas, aumentando o "
+            "bem-estar potencial do país — independentemente do volume exportado ou do "
+            "saldo da balança comercial."
         ),
     },
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "No summary do modelo MNIST, a camada Conv2D(64, (3,3)) após "
-            "MaxPooling2D tem 18.496 parâmetros. Como esse número é obtido?"
+            "Mantendo fixa a fronteira de possibilidades de produção (PPF), qual é o efeito "
+            "de uma melhora nos termos de troca sobre o bem-estar de um país, segundo o "
+            "modelo padrão de comércio?"
         ),
         "options": [
-            "A) 64 filtros × (3×3 pesos × 1 canal) + 64 bias = 640",
-            "B) 64 filtros × (3×3 pesos × 32 canais) + 64 bias = 18.496",
-            "C) 64 filtros × (3×3 pesos × 64 canais) + 64 bias = 36.928",
-            "D) 32 filtros × (3×3 pesos × 64 canais) + 32 bias = 18.464",
+            "A) O bem-estar diminui, pois o país passa a depender mais do comércio externo",
+            "B) O bem-estar aumenta, pois a linha de consumo (definida pelo preço relativo mundial) se desloca para fora, permitindo atingir uma curva de indiferença mais alta",
+            "C) O bem-estar permanece inalterado, pois a PPF não mudou",
+            "D) O efeito é ambíguo e depende exclusivamente das preferências do governo",
         ],
-        "answer": "B) 64 filtros × (3×3 pesos × 32 canais) + 64 bias = 18.496",
+        "answer": "B) O bem-estar aumenta, pois a linha de consumo (definida pelo preço relativo mundial) se desloca para fora, permitindo atingir uma curva de indiferença mais alta",
         "explanation": (
-            "A camada anterior produz 32 mapas de características (canais). "
-            "Cada filtro da nova camada tem dimensão 3×3×32 = 288 pesos, "
-            "mais 1 bias = 289. Com 64 filtros: 289 × 64 = 18.496. "
-            "Esse é exatamente o valor mostrado no model.summary() do slide."
+            "A linha de consumo passa pelo ponto de produção com inclinação igual ao preço "
+            "relativo mundial. Uma melhora nos termos de troca gira essa linha para fora, "
+            "ampliando o conjunto de cestas de consumo possíveis e permitindo alcançar uma "
+            "curva de indiferença superior — bem-estar aumenta mesmo sem qualquer mudança "
+            "na produção doméstica."
         ),
     },
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "O slide afirma que 'Dense layers → global patterns' e "
-            "'Convolution layers → local patterns'. "
-            "Qual propriedade das ConvNets garante isso?"
+            "Um país tem crescimento fortemente concentrado no setor exportador "
+            "(export-biased growth), deslocando sua curva de oferta relativa (RS) para a "
+            "direita. Qual é o efeito esperado sobre os termos de troca desse país, "
+            "mantendo tudo o mais constante?"
         ),
         "options": [
-            "A) O uso de max-pooling que seleciona apenas o maior valor de cada região",
-            "B) O compartilhamento de pesos (weight sharing): o mesmo filtro é aplicado em todas as posições da imagem",
-            "C) O uso de ReLU que remove valores negativos",
-            "D) O flattening que transforma a imagem em vetor antes da classificação",
+            "A) Os termos de troca melhoram, pois o país exporta mais",
+            "B) Os termos de troca pioram, pois o aumento da oferta relativa do bem exportado tende a reduzir seu preço relativo no mercado mundial",
+            "C) Os termos de troca não são afetados, pois dependem apenas da demanda mundial",
+            "D) Os termos de troca melhoram somente se o país for pequeno",
         ],
-        "answer": "B) O compartilhamento de pesos (weight sharing): o mesmo filtro é aplicado em todas as posições da imagem",
+        "answer": "B) Os termos de troca pioram, pois o aumento da oferta relativa do bem exportado tende a reduzir seu preço relativo no mercado mundial",
         "explanation": (
-            "Em camadas convolucionais, cada filtro desliza sobre toda a imagem "
-            "aplicando a mesma operação local. Isso cria detectores de padrões "
-            "locais (bordas, texturas) que funcionam em qualquer posição. "
-            "Camadas densas conectam cada neurônio a todos os pixels, aprendendo "
-            "padrões globais mas sem invariância à translação."
+            "Um deslocamento da RS para a direita (mais oferta do bem exportado em relação "
+            "ao importado), ao longo da curva de demanda relativa mundial, reduz o preço "
+            "relativo de equilíbrio do bem exportado — piorando os termos de troca. Esse é "
+            "o resultado clássico sobre crescimento export-biased no modelo padrão."
         ),
     },
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "O slide menciona 'Translation invariance' como propriedade das ConvNets. "
-            "O que isso significa na prática?"
+            "O fenômeno do 'crescimento empobrecedor' (immiserizing growth) ocorre quando..."
         ),
         "options": [
-            "A) A rede consegue classificar imagens traduzidas para outros idiomas",
-            "B) Um padrão aprendido em uma posição da imagem pode ser reconhecido em qualquer outra posição",
-            "C) A rede é invariante ao número de classes do problema",
-            "D) Os filtros são transladados para diferentes camadas durante o treinamento",
+            "A) Um país cresce e fica mais pobre simplesmente porque investiu em educação",
+            "B) Um país grande, com crescimento fortemente export-biased, sofre uma deterioração tão grande nos termos de troca que o efeito negativo supera o ganho direto do crescimento, reduzindo o bem-estar",
+            "C) Um país pequeno aumenta tarifas e reduz seu próprio bem-estar",
+            "D) A população cresce mais rápido que a produção agrícola, segundo a teoria malthusiana",
         ],
-        "answer": "B) Um padrão aprendido em uma posição da imagem pode ser reconhecido em qualquer outra posição",
+        "answer": "B) Um país grande, com crescimento fortemente export-biased, sofre uma deterioração tão grande nos termos de troca que o efeito negativo supera o ganho direto do crescimento, reduzindo o bem-estar",
         "explanation": (
-            "Como os mesmos pesos (filtro) são aplicados em todas as posições espaciais, "
-            "um detector de orelha de gato aprende independente de onde a orelha "
-            "aparece na imagem. Isso é diferente de uma camada densa, onde a posição "
-            "do pixel importa diretamente para o peso aplicado."
+            "Esse resultado exige que o país seja grande o suficiente para afetar preços "
+            "mundiais. Se o crescimento for fortemente concentrado no setor exportador, a "
+            "deterioração dos termos de troca pode ser tão severa que o efeito negativo "
+            "supera o ganho direto de mais recursos produtivos — um caso teórico especial "
+            "(Bhagwati) que mostra que crescer nem sempre melhora o bem-estar nacional."
         ),
     },
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "O slide compara usar Max Pooling vs. não usar Max Pooling no MNIST. "
-            "Sem max pooling, o mapa final é 22×22×64 = 30.976 coeficientes. "
-            "Qual é o principal problema disso?"
+            "Segundo o modelo padrão, por que um país GRANDE pode, em teoria, melhorar seu "
+            "bem-estar nacional ao impor uma tarifa de importação, algo impossível para um "
+            "país pequeno?"
         ),
         "options": [
-            "A) Aumenta o risco de vanishing gradient nas camadas convolucionais",
-            "B) Não há hierarquia espacial de features e há muito mais coeficientes para processar",
-            "C) O ReLU não consegue operar sobre mapas muito grandes",
-            "D) O modelo fica com menos parâmetros treináveis do que o necessário",
+            "A) Porque o país grande sempre tem superávit comercial após a tarifa",
+            "B) Porque, em um país grande, a tarifa reduz a demanda por importações o suficiente para baixar o preço mundial do bem importado, melhorando seus termos de troca — efeito ausente em um país pequeno, que enfrenta preços mundiais dados",
+            "C) Porque tarifas aumentam automaticamente a produtividade da indústria nacional",
+            "D) Porque o país grande pode evitar retaliação dos parceiros comerciais",
         ],
-        "answer": "B) Não há hierarquia espacial de features e há muito mais coeficientes para processar",
+        "answer": "B) Porque, em um país grande, a tarifa reduz a demanda por importações o suficiente para baixar o preço mundial do bem importado, melhorando seus termos de troca — efeito ausente em um país pequeno, que enfrenta preços mundiais dados",
         "explanation": (
-            "Conforme o slide: sem pooling (1) não há hierarquia espacial — "
-            "camadas mais profundas não 'veem' janelas progressivamente maiores "
-            "da imagem original, e (2) o mapa final 22×22×64 tem 30.976 coeficientes "
-            "vs. o modelo com pooling que produz 3×3×64 = 576 antes do flatten, "
-            "muito mais eficiente."
+            "Esse é o argumento da 'tarifa ótima': até certo ponto, o ganho de bem-estar "
+            "vindo da melhora dos termos de troca supera a perda de eficiência (deadweight "
+            "loss) gerada pela tarifa. Um país pequeno não tem esse poder de mercado, pois "
+            "enfrenta os preços mundiais como dados — qualquer tarifa gera apenas distorção, "
+            "sem ganho compensatório."
         ),
     },
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "Por que o slide recomenda Max Pooling em vez de Average Pooling?"
+            "O chamado 'Paradoxo de Metzler' descreve uma situação em que..."
         ),
         "options": [
-            "A) Porque o Max Pooling tem menos parâmetros treináveis",
-            "B) Porque features tendem a codificar a presença de padrões, e a presença máxima é mais informativa que a média",
-            "C) Porque Average Pooling causa overfitting mais facilmente",
-            "D) Porque Max Pooling preserva as dimensões espaciais da entrada",
+            "A) Uma tarifa de importação aumenta o preço doméstico do bem protegido, beneficiando sempre o fator usado intensivamente nesse setor",
+            "B) Uma tarifa de importação, ao deteriorar fortemente os termos de troca do parceiro exportador, pode acabar REDUZINDO o preço doméstico do bem importado, mesmo após a tarifa ser aplicada",
+            "C) Uma redução de tarifa eleva o preço doméstico do bem importado",
+            "D) Um subsídio à exportação melhora sempre os termos de troca do país que concede o subsídio",
         ],
-        "answer": "B) Porque features tendem a codificar a presença de padrões, e a presença máxima é mais informativa que a média",
+        "answer": "B) Uma tarifa de importação, ao deteriorar fortemente os termos de troca do parceiro exportador, pode acabar REDUZINDO o preço doméstico do bem importado, mesmo após a tarifa ser aplicada",
         "explanation": (
-            "O slide cita explicitamente: 'Features tend to encode the spatial "
-            "presence of some pattern' e 'it's more informative to look at the "
-            "maximal presence of different features than at their average presence'. "
-            "Se um olho de gato aparece em algum lugar da janela 2×2, o max captura isso; "
-            "a média pode diluir o sinal."
+            "Se a tarifa tiver um efeito suficientemente forte sobre o preço mundial do bem "
+            "importado (porque a oferta estrangeira é pouco elástica), o preço doméstico "
+            "(preço mundial + tarifa) pode cair abaixo do preço pré-tarifa — a tarifa "
+            "fracassa em proteger os produtores domésticos, apesar de ter sido criada "
+            "justamente para isso."
         ),
     },
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "No problema Dogs vs. Cats com apenas 2000 imagens de treino, "
-            "qual é o principal obstáculo esperado segundo o slide?"
+            "No 'problema da transferência' analisado no modelo padrão, um país transfere "
+            "renda a outro (ex: ajuda externa). Qual é o resultado USUAL esperado, e qual é "
+            "a condição para o resultado 'paradoxal' (transfer paradox)?"
         ),
         "options": [
-            "A) Underfitting, pois a rede não tem capacidade suficiente",
-            "B) Overfitting, pois o modelo memoriza o conjunto de treino pequeno",
-            "C) Vanishing gradient, pois imagens de cães e gatos são muito similares",
-            "D) Exploding gradient, pois as imagens coloridas têm valores altos",
+            "A) Usualmente, o doador perde bem-estar e o receptor ganha; o paradoxo ocorreria se a transferência deslocasse a demanda mundial de forma a melhorar tanto os termos de troca do doador que ele terminasse em situação melhor do que antes da transferência",
+            "B) Usualmente, ambos os países perdem bem-estar com qualquer transferência internacional",
+            "C) O paradoxo ocorre sempre que o receptor tem PPF maior que o doador",
+            "D) A transferência nunca afeta os termos de troca, apenas o nível de renda nominal",
         ],
-        "answer": "B) Overfitting, pois o modelo memoriza o conjunto de treino pequeno",
+        "answer": "A) Usualmente, o doador perde bem-estar e o receptor ganha; o paradoxo ocorreria se a transferência deslocasse a demanda mundial de forma a melhorar tanto os termos de troca do doador que ele terminasse em situação melhor do que antes da transferência",
         "explanation": (
-            "O slide afirma: 'On a small dataset, overfitting will be the main issue'. "
-            "Com poucas amostras, redes com muitos parâmetros tendem a memorizar "
-            "nuances do treino em vez de aprender padrões generalizáveis. "
-            "É exatamente por isso que técnicas como data augmentation e "
-            "transfer learning são introduzidas na sequência."
+            "O resultado padrão é que o doador perde renda e bem-estar, e o receptor ganha. "
+            "Mas a transferência também desloca a demanda mundial (o receptor passa a "
+            "demandar mais de certos bens). Em condições extremas, esse deslocamento pode "
+            "melhorar tanto os termos de troca do doador que ele acaba em situação melhor "
+            "do que antes — o chamado paradoxo da transferência, um resultado teórico raro."
         ),
     },
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "O slide descreve Data Augmentation com rotação, shift, shear, zoom e flip. "
-            "Qual é o papel desta técnica no contexto de generalização?"
+            "A curva de oferta relativa mundial (RS mundial), usada no modelo padrão para "
+            "determinar o preço relativo de equilíbrio em comércio internacional, é "
+            "construída como..."
         ),
         "options": [
-            "A) Aumenta o número de parâmetros da rede para aprender mais padrões",
-            "B) Gera variações artificiais das imagens existentes para que o modelo aprenda invariâncias e reduza overfitting",
-            "C) Substitui completamente a necessidade de regularização L2",
-            "D) Acelera o treinamento ao reduzir o tamanho de cada imagem",
+            "A) A soma simples das curvas de demanda relativa de cada país",
+            "B) A combinação horizontal das curvas de oferta relativa (RS) de cada país, refletindo a quantidade total ofertada do bem exportável em cada preço relativo possível",
+            "C) A média aritmética dos PPFs dos dois países",
+            "D) Apenas a curva de oferta do país com maior dotação de fatores",
         ],
-        "answer": "B) Gera variações artificiais das imagens existentes para que o modelo aprenda invariâncias e reduza overfitting",
+        "answer": "B) A combinação horizontal das curvas de oferta relativa (RS) de cada país, refletindo a quantidade total ofertada do bem exportável em cada preço relativo possível",
         "explanation": (
-            "Data augmentation cria novas amostras por transformações que preservam "
-            "a classe (um gato rotacionado ainda é um gato). Isso expande efetivamente "
-            "o dataset e ensina a rede que essas transformações não mudam o rótulo, "
-            "reduzindo overfitting sem coletar mais dados reais."
+            "A RS mundial é obtida somando horizontalmente a RS doméstica e a RS estrangeira "
+            "para cada preço relativo possível — análogo à construção de uma curva de oferta "
+            "de mercado a partir das curvas de oferta individuais das firmas."
         ),
     },
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "No Transfer Learning com VGG16, o código usa include_top=False. "
-            "O que isso faz e por quê?"
+            "No modelo padrão de comércio, o ponto de produção de equilíbrio em uma "
+            "economia aberta é determinado pela tangência entre..."
         ),
         "options": [
-            "A) Remove as camadas de convolução e mantém apenas o classificador denso",
-            "B) Remove as camadas densas finais (classificador) e mantém apenas a base convolucional para extração de features",
-            "C) Descongela todas as camadas para fine-tuning imediato",
-            "D) Reduz a resolução de entrada de 224×224 para 150×150",
+            "A) A curva de indiferença mais alta possível e a fronteira de possibilidades de produção (PPF)",
+            "B) A fronteira de possibilidades de produção (PPF) e a linha de preço relativo mundial",
+            "C) A curva de oferta relativa doméstica e a curva de demanda relativa doméstica, isoladamente do comércio",
+            "D) O eixo de exportações e o eixo de importações, sem relação com preços",
         ],
-        "answer": "B) Remove as camadas densas finais (classificador) e mantém apenas a base convolucional para extração de features",
+        "answer": "B) A fronteira de possibilidades de produção (PPF) e a linha de preço relativo mundial",
         "explanation": (
-            "include_top=False exclui as 3 camadas densas originais do VGG16 "
-            "(treinadas para 1000 classes do ImageNet). Mantém apenas a base "
-            "convolucional (14,7M parâmetros) como extrator de features. "
-            "Depois adicionamos nosso próprio classificador (Flatten + Dense) "
-            "para o novo problema (cães vs. gatos)."
+            "O ponto de produção é onde a linha de preço relativo mundial é tangente à PPF, "
+            "maximizando o valor da produção a preços mundiais. Já o ponto de consumo é "
+            "definido separadamente, pela tangência dessa mesma linha de preços com a curva "
+            "de indiferença mais alta possível — em geral, um ponto diferente do de produção "
+            "quando há comércio."
         ),
     },
     {
-        "topic": "CNN",
+        "topic": "Modelo Padrão",
         "question": (
-            "Ao fazer Transfer Learning com conv_base.trainable = False, "
-            "qual é o efeito no treinamento?"
+            "Por que se diz que um país 'pequeno' (price taker) no modelo padrão não pode "
+            "alterar seus termos de troca por meio de políticas comerciais unilaterais, "
+            "como tarifas?"
         ),
         "options": [
-            "A) A base convolucional não recebe gradientes, apenas o classificador no topo é atualizado",
-            "B) Todo o modelo para de treinar para evitar overfitting",
-            "C) Os pesos da base são zerados antes do treinamento começar",
-            "D) O learning rate é automaticamente reduzido para evitar destruir os pesos",
+            "A) Porque países pequenos não têm governo capaz de implementar tarifas",
+            "B) Porque sua participação na demanda e oferta mundiais é desprezível, de modo que ele enfrenta os preços mundiais como dados (efetivamente, a oferta externa que ele enfrenta é perfeitamente elástica)",
+            "C) Porque pequenos países têm PPFs lineares por definição",
+            "D) Porque pequenos países sempre praticam livre comércio por acordo internacional",
         ],
-        "answer": "A) A base convolucional não recebe gradientes, apenas o classificador no topo é atualizado",
+        "answer": "B) Porque sua participação na demanda e oferta mundiais é desprezível, de modo que ele enfrenta os preços mundiais como dados (efetivamente, a oferta externa que ele enfrenta é perfeitamente elástica)",
         "explanation": (
-            "O slide mostra que após conv_base.trainable = False, o número de "
-            "'trainable weights' cai drasticamente. Os 14,7M de parâmetros da "
-            "base VGG16 ficam congelados (frozen), e o backprop atualiza apenas "
-            "os pesos do Flatten+Dense adicionados. Isso evita destruir as "
-            "representações aprendidas no ImageNet."
-        ),
-    },
-    {
-        "topic": "CNN",
-        "question": (
-            "O slide descreve Fine-Tuning como descongelar apenas as últimas camadas "
-            "da base convolucional (block5_conv1 em diante). "
-            "Por que não descongelar as primeiras camadas também?"
-        ),
-        "options": [
-            "A) As primeiras camadas têm mais parâmetros e treinam muito mais rápido",
-            "B) Camadas iniciais aprendem features genéricas e reutilizáveis (bordas, texturas), enquanto camadas finais são mais especializadas e precisam ser adaptadas ao novo domínio",
-            "C) As primeiras camadas do VGG16 usam ativações incompatíveis com o novo problema",
-            "D) Descongelar camadas iniciais aumentaria o overfitting pois elas têm mais neurônios",
-        ],
-        "answer": "B) Camadas iniciais aprendem features genéricas e reutilizáveis (bordas, texturas), enquanto camadas finais são mais especializadas e precisam ser adaptadas ao novo domínio",
-        "explanation": (
-            "O slide afirma: 'Earlier layers = more-generic, reusable features' e "
-            "'higher layers = more-specialized features'. Bordas e texturas são "
-            "úteis para qualquer tarefa de visão. Features especializadas em "
-            "classes do ImageNet precisam ser ajustadas para o novo problema. "
-            "Além disso, treinar mais parâmetros aumenta o risco de overfitting "
-            "com datasets pequenos."
-        ),
-    },
-    {
-        "topic": "CNN",
-        "question": (
-            "O slide mostra que filtros das camadas iniciais (block1_conv1) detectam "
-            "bordas direcionais, enquanto filtros de camadas mais profundas detectam "
-            "texturas complexas. O que isso revela sobre a hierarquia das ConvNets?"
-        ),
-        "options": [
-            "A) Camadas profundas processam informações mais rápido por terem menos parâmetros",
-            "B) A rede aprende uma hierarquia progressiva: features simples (bordas) nas camadas iniciais são combinadas em features complexas (partes de objetos) nas camadas finais",
-            "C) Apenas as camadas finais são úteis para classificação; as iniciais são redundantes",
-            "D) Camadas iniciais aprendem cores e camadas finais aprendem formas geométricas básicas",
-        ],
-        "answer": "B) A rede aprende uma hierarquia progressiva: features simples (bordas) nas camadas iniciais são combinadas em features complexas (partes de objetos) nas camadas finais",
-        "explanation": (
-            "O slide descreve explicitamente essa hierarquia: 'First layer → edge "
-            "detectors', camadas médias detectam texturas, camadas finais detectam "
-            "conceitos como 'orelha de gato' ou 'olho de gato'. Isso é o que o "
-            "slide chama de 'Deep Neural Network: Information distillation pipeline'."
-        ),
-    },
-    {
-        "topic": "CNN",
-        "question": (
-            "O slide menciona que nas camadas mais profundas 'sparsity increases': "
-            "mais filtros ficam em branco (não ativados). O que isso indica?"
-        ),
-        "options": [
-            "A) A rede está sofrendo vanishing gradient nas camadas finais",
-            "B) Filtros profundos são especializados: só ativam quando seu padrão específico está presente na imagem",
-            "C) O dropout está removendo neurônios aleatoriamente nas camadas finais",
-            "D) O max-pooling elimina as ativações menores, deixando apenas os valores máximos",
-        ],
-        "answer": "B) Filtros profundos são especializados: só ativam quando seu padrão específico está presente na imagem",
-        "explanation": (
-            "O slide afirma: 'in the first layer, all filters are activated by the "
-            "input image; but in the following layers, more and more filters are blank'. "
-            "Um filtro de 'orelha de gato' só ativa se uma orelha de gato aparecer "
-            "na imagem. Isso é a especialização progressiva da hierarquia de features."
-        ),
-    },
-    {
-        "topic": "CNN",
-        "question": (
-            "O que é Grad-CAM e qual problema ele resolve no contexto das ConvNets?"
-        ),
-        "options": [
-            "A) É uma técnica de regularização que aplica gradientes para reduzir overfitting",
-            "B) É um método de visualização que gera heatmaps indicando quais regiões da imagem mais influenciaram a predição de uma classe",
-            "C) É um otimizador baseado em gradientes adaptativos para treinar ConvNets mais rapidamente",
-            "D) É uma técnica para inicializar os filtros das ConvNets usando gradientes do dataset",
-        ],
-        "answer": "B) É um método de visualização que gera heatmaps indicando quais regiões da imagem mais influenciaram a predição de uma classe",
-        "explanation": (
-            "O slide mostra o Grad-CAM (Gradient-weighted Class Activation Mapping): "
-            "calcula gradientes da saída de uma classe em relação à última camada "
-            "convolucional, produzindo um mapa de calor. No exemplo do elefante, "
-            "responde 'Por que a rede classificou como elefante africano?' e "
-            "'Onde está o elefante na imagem?'."
-        ),
-    },
-    {
-        "topic": "CNN",
-        "question": (
-            "Por que o slide afirma que 'ConvNets are the opposite of black boxes'?"
-        ),
-        "options": [
-            "A) Porque ConvNets têm menos parâmetros que redes densas e são mais simples de entender",
-            "B) Porque é possível visualizar o que cada filtro detecta e quais regiões da imagem ativam cada classe, tornando as representações interpretáveis",
-            "C) Porque o código fonte das ConvNets é open-source e pode ser auditado",
-            "D) Porque ConvNets sempre produzem a mesma predição para a mesma imagem, ao contrário de redes com dropout",
-        ],
-        "answer": "B) Porque é possível visualizar o que cada filtro detecta e quais regiões da imagem ativam cada classe, tornando as representações interpretáveis",
-        "explanation": (
-            "O slide lista 3 técnicas de visualização: (1) ativações intermediárias, "
-            "(2) visualização de filtros, e (3) heatmaps de ativação de classe (Grad-CAM). "
-            "Essas técnicas permitem entender o que cada parte da rede aprendeu, "
-            "algo impossível em modelos verdadeiramente caixa-preta."
-        ),
-    },
-    {
-        "topic": "CNN",
-        "question": (
-            "No slide de Transfer Learning, o learning rate usado no fine-tuning "
-            "(1e-5) é muito menor que o usado no treinamento do classificador (2e-5). "
-            "Por que usar um learning rate tão baixo no fine-tuning?"
-        ),
-        "options": [
-            "A) Para compensar o maior número de parâmetros treináveis durante o fine-tuning",
-            "B) Para evitar destruir as representações já aprendidas na base convolucional com atualizações muito grandes",
-            "C) Porque o fine-tuning usa um otimizador diferente que requer taxas menores",
-            "D) Para garantir que apenas as últimas camadas sejam atualizadas, ignorando as primeiras",
-        ],
-        "answer": "B) Para evitar destruir as representações já aprendidas na base convolucional com atualizações muito grandes",
-        "explanation": (
-            "Os pesos da base VGG16 foram cuidadosamente treinados no ImageNet. "
-            "Um LR alto poderia modificar drasticamente esses pesos em poucos steps, "
-            "destruindo representações valiosas. O LR muito baixo permite ajustes "
-            "sutis para o novo domínio sem perder o conhecimento pré-treinado."
-        ),
-    },
-    {
-        "topic": "CNN",
-        "question": (
-            "Uma Siamese Network usa duas redes com pesos compartilhados para "
-            "comparar duas entradas. Para que tipo de tarefa essa arquitetura é "
-            "especialmente útil?"
-        ),
-        "options": [
-            "A) Classificação multiclasse com muitas categorias bem definidas",
-            "B) Verificação de similaridade entre pares de imagens, como reconhecimento facial com poucos exemplos por pessoa (few-shot learning)",
-            "C) Detecção de objetos em tempo real em vídeos",
-            "D) Segmentação semântica pixel a pixel de imagens médicas",
-        ],
-        "answer": "B) Verificação de similaridade entre pares de imagens, como reconhecimento facial com poucos exemplos por pessoa (few-shot learning)",
-        "explanation": (
-            "Siamese Networks aprendem uma função de distância/similaridade entre "
-            "entradas. Como os pesos são compartilhados, ambas as redes extraem "
-            "embeddings no mesmo espaço. É ideal quando há poucas amostras por "
-            "classe (few-shot) pois aprende 'quão similares são duas imagens' em "
-            "vez de aprender N classificadores separados. Usada em verificação facial "
-            "e assinatura de documentos."
-        ),
-    },
-    {
-        "topic": "CNN",
-        "question": (
-            "Uma ResNet (Residual Network) usa conexões residuais (skip connections) "
-            "da forma: saída = F(x) + x. Qual problema de treinamento essa "
-            "arquitetura resolve?"
-        ),
-        "options": [
-            "A) Overfitting em datasets pequenos, pois reduz o número de parâmetros",
-            "B) O problema de vanishing gradient em redes muito profundas, pois o gradiente pode fluir diretamente pelo caminho residual sem desaparecer",
-            "C) A necessidade de data augmentation, pois a skip connection já introduz variações nos dados",
-            "D) O tempo de inferência, pois as skip connections permitem pular camadas durante a predição",
-        ],
-        "answer": "B) O problema de vanishing gradient em redes muito profundas, pois o gradiente pode fluir diretamente pelo caminho residual sem desaparecer",
-        "explanation": (
-            "Em redes muito profundas, os gradientes podem se tornar tão pequenos "
-            "que as camadas iniciais param de aprender (vanishing gradient). "
-            "A conexão residual x + F(x) cria um 'atalho' pelo qual o gradiente "
-            "flui diretamente para camadas anteriores. Isso permitiu treinar redes "
-            "com mais de 100 camadas (ResNet-152), algo impraticável sem skip connections."
+            "Como os volumes comercializados pelo país pequeno são irrelevantes para o "
+            "mercado mundial, alterações em sua demanda ou oferta não movem o preço "
+            "relativo mundial. Por isso, qualquer tarifa imposta por esse país é uma "
+            "distorção puramente doméstica, sem ganho de termos de troca para compensá-la."
         ),
     },
 
     # ══════════════════════════════════════════════════════
-    # RNN (Q19–36)
+    # ECONOMIAS DE ESCALA — Concorrência imperfeita e comércio intraindústria (Q11–20)
     # ══════════════════════════════════════════════════════
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "O slide mostra a fórmula da RNN: a⟨t⟩ = tanh(W_ax·x⟨t⟩ + W_aa·a⟨t-1⟩ + b_a). "
-            "O que representa o termo W_aa·a⟨t-1⟩?"
+            "Qual é a diferença fundamental entre economias de escala INTERNAS e EXTERNAS, "
+            "no contexto de economias de escala e comércio internacional?"
         ),
         "options": [
-            "A) A entrada atual multiplicada pela matriz de pesos de entrada",
-            "B) O estado oculto do passo anterior multiplicado pela matriz de pesos recorrentes, permitindo que informação de passos anteriores influencie o passo atual",
-            "C) O bias da camada, que é atualizado a cada passo de tempo",
-            "D) A predição do passo anterior que é realimentada como nova entrada",
+            "A) Internas dependem do tamanho da indústria como um todo; externas dependem do tamanho de cada firma individualmente",
+            "B) Internas ocorrem quando o custo médio de uma firma cai conforme ELA MESMA aumenta sua produção; externas ocorrem quando o custo médio de uma firma cai conforme o tamanho da INDÚSTRIA como um todo aumenta, mesmo mantendo o tamanho da firma constante",
+            "C) Não há diferença relevante; ambas levam sempre à concorrência perfeita",
+            "D) Internas só existem em indústrias agrícolas; externas só em manufatura",
         ],
-        "answer": "B) O estado oculto do passo anterior multiplicado pela matriz de pesos recorrentes, permitindo que informação de passos anteriores influencie o passo atual",
+        "answer": "B) Internas ocorrem quando o custo médio de uma firma cai conforme ELA MESMA aumenta sua produção; externas ocorrem quando o custo médio de uma firma cai conforme o tamanho da INDÚSTRIA como um todo aumenta, mesmo mantendo o tamanho da firma constante",
         "explanation": (
-            "W_aa é a matriz de pesos recorrentes (hidden-to-hidden). "
-            "Ela transforma o estado oculto a⟨t-1⟩ do passo anterior e o "
-            "adiciona à contribuição da entrada atual (W_ax·x⟨t⟩). "
-            "É esse mecanismo que dá à RNN a capacidade de 'lembrar' contexto "
-            "de passos anteriores, essencial para dados sequenciais."
+            "Economias internas tornam vantajoso ser uma firma grande, gerando estruturas "
+            "de mercado imperfeitamente competitivas (poucas firmas grandes). Economias "
+            "externas dependem do tamanho agregado da indústria (mão de obra "
+            "especializada, fornecedores, transbordamento de conhecimento) e são "
+            "compatíveis com muitas firmas pequenas em concorrência, mas criam dependência "
+            "histórica na localização da indústria."
         ),
     },
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "O slide mostra que a RNN é conectada ao longo do tempo como células "
-            "encadeadas: a⟨0⟩ → RNN-cell → a⟨1⟩ → RNN-cell → ... "
-            "O que acontece com a⟨0⟩ geralmente na prática?"
+            "O modelo de concorrência monopolística, usado para analisar comércio com "
+            "economias de escala internas, é caracterizado por..."
         ),
         "options": [
-            "A) É calculado como a média de todas as entradas da sequência",
-            "B) É inicializado como vetor de zeros",
-            "C) É o vetor de bias da primeira camada",
-            "D) É copiado da saída da última célula da sequência anterior",
+            "A) Poucas firmas, produto homogêneo e barreiras à entrada",
+            "B) Muitas firmas, produtos diferenciados, livre entrada e saída, e cada firma enfrentando uma curva de demanda com inclinação negativa, mas sem lucro econômico de longo prazo",
+            "C) Uma única firma monopolista controlando toda a oferta do mercado",
+            "D) Firmas que competem apenas via guerra de preços, sem diferenciação de produto",
         ],
-        "answer": "B) É inicializado como vetor de zeros",
+        "answer": "B) Muitas firmas, produtos diferenciados, livre entrada e saída, e cada firma enfrentando uma curva de demanda com inclinação negativa, mas sem lucro econômico de longo prazo",
         "explanation": (
-            "O estado inicial a⟨0⟩ representa o 'contexto' antes de ver qualquer "
-            "entrada. Como não há informação anterior, a convenção padrão é "
-            "inicializá-lo com zeros. Em algumas arquiteturas avançadas, a⟨0⟩ "
-            "pode ser aprendido ou inicializado com informações do problema, "
-            "mas zeros é o padrão mais comum."
+            "A concorrência monopolística combina elementos de monopólio (cada firma vende "
+            "um produto diferenciado e tem algum poder de preço, com demanda decrescente) e "
+            "de concorrência (muitas firmas, livre entrada e saída levam o lucro econômico a "
+            "zero no longo prazo)."
         ),
     },
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "O slide destaca que RNNs capturam 'dynamic information in sequential "
-            "data' e mantêm um 'context state'. "
-            "Por que uma rede densa (MLP) não seria adequada para processar sequências?"
+            "No equilíbrio de longo prazo do modelo de concorrência monopolística, o preço "
+            "cobrado por cada firma é aproximadamente P = c + 1/(b·n), onde c é o custo "
+            "marginal, b mede a sensibilidade da demanda ao preço, e n é o número de firmas. "
+            "O que ocorre com o preço de equilíbrio quando n AUMENTA, mantendo tudo o mais "
+            "constante?"
         ),
         "options": [
-            "A) Porque MLPs não conseguem usar a função de ativação tanh",
-            "B) Porque MLPs têm entrada de tamanho fixo e não compartilham pesos ao longo do tempo, não capturando dependências temporais naturalmente",
-            "C) Porque MLPs são muito rápidas e não permitem processar tokens um a um",
-            "D) Porque MLPs exigem que todos os dados estejam normalizados, o que é difícil em sequências",
+            "A) O preço aumenta, pois mais firmas implica mais poder de mercado agregado",
+            "B) O preço diminui, pois mais firmas tornam a demanda enfrentada por cada uma mais sensível (concorrência mais acirrada), reduzindo o markup sobre o custo marginal",
+            "C) O preço permanece constante, pois depende apenas do custo marginal c",
+            "D) O preço se torna negativo quando n é muito grande",
         ],
-        "answer": "B) Porque MLPs têm entrada de tamanho fixo e não compartilham pesos ao longo do tempo, não capturando dependências temporais naturalmente",
+        "answer": "B) O preço diminui, pois mais firmas tornam a demanda enfrentada por cada uma mais sensível (concorrência mais acirrada), reduzindo o markup sobre o custo marginal",
         "explanation": (
-            "Um MLP exige tamanho de entrada fixo e trata cada posição "
-            "independentemente com pesos distintos. Não há mecanismo para "
-            "passar informação de t para t+1. A RNN resolve isso com o estado "
-            "recorrente a⟨t⟩ que acumula contexto ao longo da sequência, "
-            "e com weight sharing (W_aa, W_ax compartilhados em todos os steps)."
+            "Conforme n aumenta, o termo 1/(b·n) diminui, reduzindo o markup sobre o custo "
+            "marginal. Mais firmas no mercado intensificam a pressão competitiva sobre cada "
+            "uma, consistente com a ideia de que um mercado maior (que sustenta mais firmas) "
+            "tende a gerar preços menores para os consumidores."
         ),
     },
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "Na equação de saída do slide: ŷ⟨t⟩ = softmax(W_ya·a⟨t⟩ + b_y). "
-            "O que acontece se quisermos classificar uma sequência inteira "
-            "(ex: análise de sentimento de uma frase), em vez de produzir "
-            "uma saída por passo de tempo?"
+            "Quando dois países abrem comércio entre si em uma indústria com economias de "
+            "escala internas e produtos diferenciados, o efeito de 'tamanho de mercado' "
+            "implica que..."
         ),
         "options": [
-            "A) Usamos apenas ŷ⟨1⟩ como resultado final, pois é o estado mais informativo",
-            "B) Usamos apenas ŷ⟨Tx⟩ (saída do último passo), pois o estado oculto final acumula toda a informação da sequência",
-            "C) Somamos todas as saídas ŷ⟨t⟩ de cada passo de tempo",
-            "D) Calculamos ŷ na camada de entrada, antes do processamento recorrente",
+            "A) O mercado integrado (mundial) permite que mais firmas sobrevivam, cada uma operando em maior escala, com preços mais baixos e maior variedade disponível para os consumidores de ambos os países",
+            "B) O comércio sempre reduz a variedade de produtos disponíveis, pois força a padronização",
+            "C) O tamanho do mercado não tem nenhuma relação com o número de firmas viáveis na indústria",
+            "D) O comércio elimina completamente as economias de escala, pois fragmenta a produção",
         ],
-        "answer": "B) Usamos apenas ŷ⟨Tx⟩ (saída do último passo), pois o estado oculto final acumula toda a informação da sequência",
+        "answer": "A) O mercado integrado (mundial) permite que mais firmas sobrevivam, cada uma operando em maior escala, com preços mais baixos e maior variedade disponível para os consumidores de ambos os países",
         "explanation": (
-            "Para tarefas many-to-one (sequência → classe), o estado oculto "
-            "a⟨Tx⟩ do último passo encapsula o contexto de toda a sequência. "
-            "Passamos apenas esse estado final para o classificador. "
-            "Isso contrasta com tarefas many-to-many (ex: NER, tradução) "
-            "onde cada ŷ⟨t⟩ é usado."
+            "Integrar mercados permite que as firmas alcancem maior escala (menor custo "
+            "médio), sustenta mais firmas no total do que cada país isoladamente, reduz "
+            "preços via maior concorrência, e dá aos consumidores de ambos os países acesso "
+            "a maior variedade de produtos — resultado central dos ganhos de comércio via "
+            "tamanho de mercado em modelos de concorrência monopolística."
         ),
     },
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "O slide mostra o gradiente ∂J/∂a⟨t-1⟩ = (∂J/∂a⟨t⟩) · (∂a⟨t⟩/∂a⟨t-1⟩). "
-            "O que é o 'Vanishing Gradient Problem' que afeta RNNs básicas?"
+            "O comércio intraindústria (intra-industry trade) refere-se a..."
         ),
         "options": [
-            "A) O gradiente explode para valores muito grandes ao longo do tempo",
-            "B) O gradiente se multiplica por W_aa em cada passo de tempo; se os valores singulares de W_aa são < 1, o gradiente encolhe exponencialmente e as dependências de longo prazo não são aprendidas",
-            "C) A função tanh satura e produz gradientes sempre iguais a zero",
-            "D) O bias b_a acumula gradientes muito grandes e desestabiliza o treinamento",
+            "A) Comércio entre setores totalmente diferentes da economia, como agricultura e manufatura",
+            "B) Importação e exportação simultâneas de produtos da MESMA indústria, geralmente versões diferenciadas de um produto similar (ex: um país exporta e importa automóveis ao mesmo tempo)",
+            "C) Comércio que ocorre apenas dentro das fronteiras de um único país, entre suas regiões",
+            "D) Transferência de tecnologia entre firmas da mesma indústria sem troca de bens físicos",
         ],
-        "answer": "B) O gradiente se multiplica por W_aa em cada passo de tempo; se os valores singulares de W_aa são < 1, o gradiente encolhe exponencialmente e as dependências de longo prazo não são aprendidas",
+        "answer": "B) Importação e exportação simultâneas de produtos da MESMA indústria, geralmente versões diferenciadas de um produto similar (ex: um país exporta e importa automóveis ao mesmo tempo)",
         "explanation": (
-            "O BPTT propaga ∂J/∂a⟨1⟩ multiplicando repetidamente pela Jacobiana "
-            "∂a⟨t⟩/∂a⟨t-1⟩ = W_aa^T · diag(1-tanh²(·)). "
-            "Se os valores singulares de W_aa < 1, após T multiplicações o "
-            "gradiente → 0, e a rede não consegue aprender que, por exemplo, "
-            "o sujeito no início da frase determina a conjugação do verbo no final."
+            "Comércio intraindústria é a troca simultânea de bens similares, mas "
+            "diferenciados, dentro da mesma classificação de indústria, entre países "
+            "(geralmente similares) — explicado pela diferenciação de produtos e economias "
+            "de escala, e não pela vantagem comparativa baseada em dotações de fatores."
         ),
     },
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "O slide mostra a célula LSTM com forget gate Γ_f, update gate Γ_u "
-            "e output gate Γ_o. "
-            "Qual é a principal vantagem do LSTM sobre a RNN básica (Elman)?"
+            "Por que o comércio intraindústria é particularmente comum entre países com "
+            "dotações de fatores e níveis de desenvolvimento SIMILARES, e não é bem "
+            "explicado pelo modelo de vantagem comparativa tradicional?"
         ),
         "options": [
-            "A) O LSTM tem menos parâmetros e treina mais rapidamente",
-            "B) O LSTM introduz o estado de célula c⟨t⟩, que permite que informação flua por longos períodos sem ser modificada, mitigando o vanishing gradient",
-            "C) O LSTM usa a função sigmoid em vez de tanh, o que evita saturação",
-            "D) O LSTM processa a sequência em paralelo, ao contrário da RNN que é sequencial",
+            "A) Porque países similares nunca obtêm ganhos de comércio segundo Heckscher-Ohlin",
+            "B) Porque, sendo as dotações de fatores parecidas, há pouca diferença de custo comparativo entre eles; o comércio surge da diferenciação de produtos e das economias de escala, tornando vantajoso cada país se especializar em variedades específicas e trocá-las",
+            "C) Porque países similares sempre praticam protecionismo recíproco",
+            "D) Porque a moeda comum elimina a necessidade de explicação teórica para esse comércio",
         ],
-        "answer": "B) O LSTM introduz o estado de célula c⟨t⟩, que permite que informação flua por longos períodos sem ser modificada, mitigando o vanishing gradient",
+        "answer": "B) Porque, sendo as dotações de fatores parecidas, há pouca diferença de custo comparativo entre eles; o comércio surge da diferenciação de produtos e das economias de escala, tornando vantajoso cada país se especializar em variedades específicas e trocá-las",
         "explanation": (
-            "A inovação central do LSTM é o cell state c⟨t⟩ e os gates. "
-            "A equação c⟨t⟩ = Γ_f ⊙ c⟨t-1⟩ + Γ_u ⊙ c̃⟨t⟩ permite que "
-            "informações antigas sejam preservadas (se Γ_f ≈ 1) sem passar "
-            "por multiplicações repetidas que causariam vanishing gradient. "
-            "O gradiente flui pelo 'highway' do cell state quase sem atenuação."
+            "Entre países similares, o comércio impulsionado por vantagem comparativa "
+            "(Heckscher-Ohlin) é limitado, já que as proporções de fatores são parecidas. "
+            "O comércio intraindústria surge, em vez disso, de modelos de retornos "
+            "crescentes/diferenciação de produtos, em que cada país se especializa em "
+            "certas variedades e troca por outras, gerando ganhos mútuos de variedade e "
+            "escala mesmo sem diferenças de vantagem comparativa."
         ),
     },
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "No LSTM do slide: c⟨t⟩ = Γ_f⟨t⟩ ⊙ c⟨t-1⟩ + Γ_u⟨t⟩ ⊙ c̃⟨t⟩. "
-            "O que acontece quando o forget gate Γ_f⟨t⟩ ≈ 0?"
+            "No contexto de comércio internacional e economias de escala, 'dumping' é "
+            "definido como..."
         ),
         "options": [
-            "A) O estado da célula anterior é completamente preservado",
-            "B) O estado da célula anterior é apagado, e apenas a nova informação c̃⟨t⟩ contribui para c⟨t⟩",
-            "C) A nova informação c̃⟨t⟩ é bloqueada e o estado anterior é mantido intacto",
-            "D) O output gate fecha automaticamente, zerando a saída do LSTM",
+            "A) Uma firma vender seu produto no mercado externo por um preço MAIOR do que no mercado doméstico",
+            "B) Uma firma com poder de mercado segmentar mercados e vender seu produto no exterior por um preço MENOR do que cobra no mercado doméstico, geralmente por enfrentar uma demanda mais elástica (mais competitiva) no exterior",
+            "C) Um país proibir totalmente a entrada de produtos estrangeiros em seu território",
+            "D) A prática de exportar apenas produtos de baixa qualidade para outros países",
         ],
-        "answer": "B) O estado da célula anterior é apagado, e apenas a nova informação c̃⟨t⟩ contribui para c⟨t⟩",
+        "answer": "B) Uma firma com poder de mercado segmentar mercados e vender seu produto no exterior por um preço MENOR do que cobra no mercado doméstico, geralmente por enfrentar uma demanda mais elástica (mais competitiva) no exterior",
         "explanation": (
-            "Γ_f⟨t⟩ ≈ 0 → Γ_f ⊙ c⟨t-1⟩ ≈ 0, então c⟨t⟩ ≈ Γ_u ⊙ c̃⟨t⟩. "
-            "A memória anterior é 'esquecida'. Note a aparente confusão de nome: "
-            "forget gate = 0 significa 'esqueça tudo'. "
-            "Isso ocorre quando o LSTM detecta uma mudança de contexto, "
-            "como o início de uma nova frase."
+            "Dumping é discriminação internacional de preços por uma firma com poder de "
+            "mercado, que enfrenta mercados segmentados (sem possibilidade de arbitragem "
+            "entre eles). Tipicamente cobra preço menor no exterior, onde a demanda "
+            "residual que enfrenta é mais elástica (mais concorrência local), e preço "
+            "maior em casa, onde a demanda é menos elástica."
         ),
     },
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "O slide mostra que a⟨t⟩ = Γ_o⟨t⟩ ⊙ tanh(c⟨t⟩). "
-            "Qual é o papel do output gate Γ_o⟨t⟩ nesta equação?"
+            "Em indústrias caracterizadas por economias de escala EXTERNAS (ex: polos "
+            "tecnológicos regionais), o padrão de comércio internacional resultante é "
+            "considerado..."
         ),
         "options": [
-            "A) Decide quanta informação nova deve ser escrita no cell state",
-            "B) Controla quanta informação do cell state c⟨t⟩ é exposta como estado oculto a⟨t⟩ para a saída e próxima célula",
-            "C) Determina se o forget gate deve ser ativado no próximo passo",
-            "D) Escala o learning rate para o passo de tempo atual",
+            "A) Totalmente determinado pelas dotações de fatores de cada país, sem influência histórica",
+            "B) Potencialmente dependente da história (path dependent): um país que primeiro desenvolveu a indústria pode manter vantagem de custos simplesmente por já ter a escala da indústria estabelecida, mesmo que outro país pudesse, em princípio, produzir de forma igualmente eficiente caso já tivesse a mesma escala",
+            "C) Sempre favorável ao país com menor PIB per capita",
+            "D) Determinado exclusivamente pelo câmbio entre os países",
         ],
-        "answer": "B) Controla quanta informação do cell state c⟨t⟩ é exposta como estado oculto a⟨t⟩ para a saída e próxima célula",
+        "answer": "B) Potencialmente dependente da história (path dependent): um país que primeiro desenvolveu a indústria pode manter vantagem de custos simplesmente por já ter a escala da indústria estabelecida, mesmo que outro país pudesse, em princípio, produzir de forma igualmente eficiente caso já tivesse a mesma escala",
         "explanation": (
-            "O cell state c⟨t⟩ pode conter muita informação acumulada. "
-            "O output gate Γ_o age como um filtro: decide o que do c⟨t⟩ "
-            "deve ser exposto como saída a⟨t⟩ neste momento. "
-            "Por exemplo, o LSTM pode saber o gênero do sujeito desde o início "
-            "da frase mas só revelar essa informação quando necessário para "
-            "gerar a palavra correta."
+            "Com economias externas, a vantagem de custo decorre do tamanho do "
+            "agrupamento já existente da indústria (mão de obra especializada, "
+            "fornecedores, transbordamento de conhecimento), e não de características "
+            "inerentes ao país. Isso gera concentração autorreforçada (efeitos de "
+            "'pioneirismo' ou acidente histórico), podendo travar um padrão de comércio "
+            "que não se baseia necessariamente em vantagem comparativa convencional."
         ),
     },
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "O slide menciona que RNNs capturam contexto em 'context windows of "
-            "any length'. Porém, na prática, qual limitação afeta "
-            "o aprendizado de dependências muito longas em RNNs simples?"
+            "Em um modelo de concorrência monopolística com economias de escala, dois "
+            "países IDÊNTICOS em dotações de fatores e tecnologia ainda podem ganhar com o "
+            "comércio entre si. Qual é a razão para isso, diferentemente dos modelos "
+            "Ricardiano ou de Heckscher-Ohlin tradicionais?"
         ),
         "options": [
-            "A) RNNs simples têm um limite fixo de 100 passos de tempo definido no Keras",
-            "B) O vanishing gradient faz com que o sinal de erro de passos muito distantes se torne negligenciável, impedindo que a rede aprenda dependências de longo prazo",
-            "C) O max-pooling nas camadas anteriores remove informações temporais",
-            "D) O softmax na saída normaliza as probabilidades e apaga o contexto anterior",
+            "A) Porque mesmo países idênticos têm sempre vantagem comparativa entre si, segundo Ricardo",
+            "B) Porque o comércio permite explorar economias de escala (produzindo cada variedade em maior volume, reduzindo custo médio) e oferece aos consumidores acesso a maior variedade de produtos diferenciados, mesmo sem diferenças de custo comparativo",
+            "C) Porque países idênticos sempre têm taxas de câmbio diferentes que geram ganhos artificiais",
+            "D) Porque a igualdade entre países elimina a necessidade de qualquer ganho real de comércio",
         ],
-        "answer": "B) O vanishing gradient faz com que o sinal de erro de passos muito distantes se torne negligenciável, impedindo que a rede aprenda dependências de longo prazo",
+        "answer": "B) Porque o comércio permite explorar economias de escala (produzindo cada variedade em maior volume, reduzindo custo médio) e oferece aos consumidores acesso a maior variedade de produtos diferenciados, mesmo sem diferenças de custo comparativo",
         "explanation": (
-            "Embora teoricamente a RNN possa propagar informação por qualquer "
-            "número de passos, na prática o BPTT multiplica os gradientes por "
-            "W_aa repetidamente. Com W_aa pequeno, o gradiente de passos distantes "
-            "vira efetivamente zero. Por isso LSTMs e GRUs foram criados: "
-            "para aprender dependências de longo prazo de forma mais confiável."
+            "Diferentemente dos modelos Ricardiano/Heckscher-Ohlin (que exigem diferenças "
+            "de custo ou de dotação de fatores para gerar ganhos), modelos de retornos "
+            "crescentes mostram que mesmo países totalmente simétricos ganham com o "
+            "comércio, pois a integração de mercados permite maior especialização em menos "
+            "variedades em maior escala por firma, além de maior variedade disponível para "
+            "os consumidores de ambos os países."
         ),
     },
     {
-        "topic": "RNN",
+        "topic": "Escala e Concorrência",
         "question": (
-            "O slide lista vídeo, áudio e frases como exemplos de sequências "
-            "processadas por RNNs. "
-            "Para uma tarefa de tradução automática (ex: Português → Inglês), "
-            "qual arquitetura de RNN seria mais adequada?"
+            "No modelo de Krugman sobre comércio e economias de escala, o número de "
+            "equilíbrio de firmas (variedades) em uma indústria está positivamente "
+            "relacionado a quê?"
         ),
         "options": [
-            "A) Many-to-one: a frase em português entra e apenas a última palavra em inglês é gerada",
-            "B) One-to-many: uma única representação entra e uma sequência em inglês é gerada",
-            "C) Many-to-many com tamanhos diferentes (encoder-decoder): a sequência em português é codificada e depois decodificada para inglês",
-            "D) One-to-one: cada palavra em português é traduzida independentemente para inglês",
+            "A) Ao tamanho do mercado: mercados maiores (incluindo o mercado mundial integrado via comércio) sustentam um maior número de firmas, cada uma ainda operando em escala eficiente",
+            "B) À taxa de juros nominal do país, exclusivamente",
+            "C) Ao número de sindicatos existentes na indústria",
+            "D) À distância geográfica entre os países, exclusivamente",
         ],
-        "answer": "C) Many-to-many com tamanhos diferentes (encoder-decoder): a sequência em português é codificada e depois decodificada para inglês",
+        "answer": "A) Ao tamanho do mercado: mercados maiores (incluindo o mercado mundial integrado via comércio) sustentam um maior número de firmas, cada uma ainda operando em escala eficiente",
         "explanation": (
-            "Tradução é many-to-many assimétrico: frases de comprimentos diferentes "
-            "em idiomas diferentes. A arquitetura seq2seq usa um encoder RNN "
-            "que comprime a frase de entrada em um vetor de contexto, e um "
-            "decoder RNN que gera a tradução token a token. "
-            "Esse design permite lidar com sequências de comprimentos arbitrários."
-        ),
-    },
-    {
-        "topic": "RNN",
-        "question": (
-            "No cache da célula RNN do slide: cache = (a⟨t⟩, a⟨t-1⟩, x⟨t⟩, parameters). "
-            "Por que é necessário armazenar a⟨t-1⟩ durante o forward pass?"
-        ),
-        "options": [
-            "A) Para calcular a predição ŷ⟨t⟩ na saída",
-            "B) Porque o backpropagation through time (BPTT) precisará de a⟨t-1⟩ para calcular o gradiente ∂J/∂a⟨t-1⟩ durante a fase de retropropagação",
-            "C) Para normalizar o estado oculto atual antes de passá-lo para a próxima célula",
-            "D) Para calcular o forget gate no LSTM que depende do estado anterior",
-        ],
-        "answer": "B) Porque o backpropagation through time (BPTT) precisará de a⟨t-1⟩ para calcular o gradiente ∂J/∂a⟨t-1⟩ durante a fase de retropropagação",
-        "explanation": (
-            "O slide mostra que ∂J/∂a⟨t-1⟩ = (∂J/∂a⟨t⟩) · (∂a⟨t⟩/∂a⟨t-1⟩). "
-            "Para calcular ∂a⟨t⟩/∂a⟨t-1⟩ = W_aa^T · (1 - tanh²(·)), precisamos "
-            "dos valores intermediários do forward pass. "
-            "Por isso todos os estados devem ser armazenados durante o forward "
-            "para uso no backward — é o custo de memória O(T) do BPTT."
-        ),
-    },
-    {
-        "topic": "RNN",
-        "question": (
-            "Qual das seguintes aplicações práticas é um exemplo de tarefa "
-            "'many-to-one' para RNNs?"
-        ),
-        "options": [
-            "A) Geração de música: a rede produz uma sequência de notas",
-            "B) Análise de sentimento: uma sequência de palavras entra e a rede produz 'positivo' ou 'negativo'",
-            "C) Tradução automática: uma frase em um idioma é traduzida para outro",
-            "D) Reconhecimento de voz: um áudio é transcrito palavra por palavra",
-        ],
-        "answer": "B) Análise de sentimento: uma sequência de palavras entra e a rede produz 'positivo' ou 'negativo'",
-        "explanation": (
-            "Many-to-one: a RNN processa uma sequência inteira (palavras da frase) "
-            "e produz uma única saída (classificação de sentimento) usando o "
-            "estado oculto final. Geração de música é one-to-many, tradução é "
-            "many-to-many assimétrico, e reconhecimento de voz é many-to-many."
-        ),
-    },
-    {
-        "topic": "RNN",
-        "question": (
-            "O slide destaca que hidden layers 'in current and next moment are related' "
-            "na RNN. Qual é a consequência disso para o treinamento em comparação "
-            "com um MLP treinado com backpropagation padrão?"
-        ),
-        "options": [
-            "A) A RNN usa um otimizador diferente (SGD em vez de Adam)",
-            "B) O backpropagation na RNN deve percorrer os passos de tempo de trás para frente (BPTT), acumulando gradientes ao longo do tempo",
-            "C) A RNN não requer backpropagation, pois os estados recorrentes já corrigem os pesos automaticamente",
-            "D) Os gradientes na RNN são calculados apenas para o último passo de tempo",
-        ],
-        "answer": "B) O backpropagation na RNN deve percorrer os passos de tempo de trás para frente (BPTT), acumulando gradientes ao longo do tempo",
-        "explanation": (
-            "O slide mostra o grafo de computação da RNN ao longo do tempo. "
-            "Como os mesmos pesos W são usados em cada step, o gradiente de J "
-            "em relação a W é a soma das contribuições de todos os passos: "
-            "∂J/∂W = Σ_t (∂J_t/∂W). O BPTT unrola a sequência e propaga "
-            "os gradientes do último passo até o primeiro."
-        ),
-    },
-    {
-        "topic": "RNN",
-        "question": (
-            "O slide mostra que no LSTM, Γ_f, Γ_u, Γ_o são calculados com sigmoid σ, "
-            "enquanto c̃⟨t⟩ usa tanh. Por que os gates usam sigmoid e não tanh?"
-        ),
-        "options": [
-            "A) Sigmoid é mais rápida de calcular do que tanh em GPUs",
-            "B) Sigmoid produz valores entre 0 e 1, funcionando como uma 'porta' que controla quanto de uma informação passa (0 = bloqueia, 1 = deixa passar totalmente)",
-            "C) Tanh produziria gradientes negativos, que são indesejados nos gates",
-            "D) Sigmoid é usada nos gates para manter a compatibilidade com a função de perda cross-entropy",
-        ],
-        "answer": "B) Sigmoid produz valores entre 0 e 1, funcionando como uma 'porta' que controla quanto de uma informação passa (0 = bloqueia, 1 = deixa passar totalmente)",
-        "explanation": (
-            "Gates são mecanismos de controle: precisam de valores em [0,1] "
-            "para funcionar como multiplicação seletiva (⊙). "
-            "Sigmoid(x) ∈ (0,1) permite interpretação como 'proporção de passagem'. "
-            "Já c̃⟨t⟩ representa o candidato a nova informação, onde valores "
-            "negativos (tanh ∈ (-1,1)) são válidos e representam 'desativar' "
-            "uma feature que estava ativa."
-        ),
-    },
-    {
-        "topic": "RNN",
-        "question": (
-            "Por que o slide afirma que RNNs se estendem 'in space and time sequences'? "
-            "O que significa a dimensão 'espaço' neste contexto?"
-        ),
-        "options": [
-            "A) Que a RNN pode processar imagens além de sequências temporais",
-            "B) Que além de se estender ao longo do tempo (passos t), a RNN pode ser empilhada em múltiplas camadas (profundidade), criando uma rede recorrente profunda",
-            "C) Que a RNN usa coordenadas espaciais para localizar padrões em vídeos",
-            "D) Que os estados ocultos são organizados em uma grade 2D para capturar contexto espacial",
-        ],
-        "answer": "B) Que além de se estender ao longo do tempo (passos t), a RNN pode ser empilhada em múltiplas camadas (profundidade), criando uma rede recorrente profunda",
-        "explanation": (
-            "RNNs empilhadas (stacked RNNs) têm múltiplas camadas recorrentes, "
-            "onde a saída a⟨t⟩ de uma camada alimenta a próxima camada como entrada. "
-            "Isso cria hierarquia tanto temporal (ao longo de t) quanto espacial "
-            "(ao longo das camadas), permitindo aprender representações mais abstratas "
-            "das sequências."
-        ),
-    },
-    {
-        "topic": "RNN",
-        "question": (
-            "Considerando a arquitetura LSTM encadeada mostrada no slide, "
-            "quais são os dois estados que passam de uma célula para a próxima?"
-        ),
-        "options": [
-            "A) O vetor de entrada x⟨t⟩ e o vetor de bias b_a",
-            "B) O cell state c⟨t⟩ e o hidden state a⟨t⟩",
-            "C) O forget gate Γ_f e o update gate Γ_u",
-            "D) A predição ŷ⟨t⟩ e o cell state c⟨t⟩",
-        ],
-        "answer": "B) O cell state c⟨t⟩ e o hidden state a⟨t⟩",
-        "explanation": (
-            "O diagrama de LSTM encadeado do slide mostra claramente duas 'linhas' "
-            "conectando células consecutivas: c⟨t-1⟩ → c⟨t⟩ (cell state, a 'memória "
-            "de longo prazo') e a⟨t-1⟩ → a⟨t⟩ (hidden state, a 'memória de curto "
-            "prazo'). A RNN simples passa apenas a⟨t⟩; é o cell state extra que "
-            "dá ao LSTM sua capacidade de longo prazo."
+            "No modelo, o número de equilíbrio de firmas balanceia economias de escala "
+            "(favorecendo firmas menos numerosas e maiores) contra a demanda por "
+            "variedade/competição (favorecendo entrada). Um mercado maior (como o mercado "
+            "mundial integrado pelo comércio) pode sustentar mais firmas no total do que "
+            "cada mercado nacional isolado — previsão central da 'nova teoria do comércio'."
         ),
     },
 
     # ══════════════════════════════════════════════════════
-    # Regularização (Q37–50)
+    # INSTRUMENTOS DE POLÍTICA COMERCIAL — Tarifas e bem-estar (Q21–30)
     # ══════════════════════════════════════════════════════
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide define: E[MSE] = Bias² + Variance + Noise. "
-            "Qual componente dessa equação NÃO pode ser reduzido, "
-            "mesmo com o modelo perfeito?"
+            "Quando um país PEQUENO (price taker) impõe uma tarifa de importação, quais "
+            "são os efeitos sobre os componentes de bem-estar doméstico, segundo a análise "
+            "de equilíbrio parcial padrão?"
         ),
         "options": [
-            "A) Bias², pois modelos complexos sempre terão alguma simplificação",
-            "B) Variance, pois dados reais sempre têm variações aleatórias",
-            "C) Noise (σ²ε), pois representa variações aleatórias irredutíveis nos dados",
-            "D) Bias², pois é impossível estimar a função verdadeira f(x)",
+            "A) O excedente do consumidor aumenta, o excedente do produtor diminui e a receita do governo é nula",
+            "B) O excedente do consumidor diminui, o excedente do produtor aumenta, o governo arrecada receita tarifária, e a perda líquida de bem-estar (perda de eficiência) é estritamente positiva, pois o país não tem poder de mercado para melhorar seus termos de troca",
+            "C) Todos os componentes aumentam simultaneamente, gerando ganho líquido de bem-estar",
+            "D) Apenas o excedente do produtor é afetado; consumidores e governo permanecem indiferentes",
         ],
-        "answer": "C) Noise (σ²ε), pois representa variações aleatórias irredutíveis nos dados",
+        "answer": "B) O excedente do consumidor diminui, o excedente do produtor aumenta, o governo arrecada receita tarifária, e a perda líquida de bem-estar (perda de eficiência) é estritamente positiva, pois o país não tem poder de mercado para melhorar seus termos de troca",
         "explanation": (
-            "O slide afirma: 'Cannot do anything about it even if seeded with "
-            "knowledge about true model'. O noise σ²ε vem de fatores como "
-            "erro humano de rotulação ou sensor defeituoso. "
-            "Mesmo o modelo perfeito que aprende f(x) exatamente ainda erra "
-            "nessas amostras ruidosas. É o piso mínimo do MSE."
+            "A tarifa eleva o preço doméstico acima do preço mundial: o excedente do "
+            "consumidor cai, o excedente do produtor doméstico sube, e o governo arrecada "
+            "receita sobre as importações remanescentes. Para um país pequeno (price "
+            "taker), não há ganho compensatório de termos de troca, de modo que o efeito "
+            "líquido é uma perda de eficiência (deadweight loss), composta pelos "
+            "triângulos de distorção da produção e do consumo."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide explica que um modelo polinomial de grau 4 tem menos bias "
-            "mas mais variance que um modelo linear. "
-            "O que é 'model variance' neste contexto?"
+            "Para um país GRANDE, por que existe, em teoria, uma tarifa 'ótima' positiva "
+            "que maximiza o bem-estar nacional, em vez de o livre comércio ser sempre o "
+            "ideal do ponto de vista nacional (ignorando retaliação)?"
         ),
         "options": [
-            "A) A variância dos valores de y no dataset de treino",
-            "B) O quanto as predições do modelo mudam quando treinado em diferentes amostras do mesmo problema",
-            "C) A diferença entre a predição média e a predição mínima do modelo",
-            "D) O número de parâmetros do modelo dividido pelo tamanho do dataset",
+            "A) Porque tarifas sempre aumentam a receita do governo sem custo algum",
+            "B) Porque, até certo ponto, o ganho de bem-estar proveniente da melhora dos termos de troca supera a perda de eficiência gerada pela distorção do consumo e da produção; acima desse ponto ótimo, o efeito de distorção domina",
+            "C) Porque tarifas eliminam totalmente a necessidade de importações",
+            "D) Porque o livre comércio é sempre prejudicial para qualquer país, independentemente do tamanho",
         ],
-        "answer": "B) O quanto as predições do modelo mudam quando treinado em diferentes amostras do mesmo problema",
+        "answer": "B) Porque, até certo ponto, o ganho de bem-estar proveniente da melhora dos termos de troca supera a perda de eficiência gerada pela distorção do consumo e da produção; acima desse ponto ótimo, o efeito de distorção domina",
         "explanation": (
-            "O slide mostra o experimento: amostrar 5 pontos duas vezes e treinar "
-            "modelo polinomial → predições de x=2 'wildly varying'. "
-            "O modelo linear produz predições muito mais estáveis. "
-            "Model variance = sensibilidade do modelo ao dataset de treino "
-            "específico. Alto variance indica overfitting às nuances do treino."
+            "Conforme a tarifa sobe a partir de zero, o ganho de termos de troca "
+            "inicialmente supera a perda de eficiência crescente, elevando o bem-estar "
+            "nacional. Além da tarifa ótima, a perda de eficiência cresce mais rápido que "
+            "o ganho de termos de troca, reduzindo o bem-estar. É um argumento puramente "
+            "nacional e não-cooperativo, que tipicamente provoca retaliação estrangeira, "
+            "podendo eliminar qualquer ganho global."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide mostra o fluxograma: High Bias? → Bigger network. "
-            "High Variance? → More data / Regularization. "
-            "Se um modelo tem 95% de acurácia no treino e 70% na validação, "
-            "qual é o diagnóstico e a solução recomendada?"
+            "Qual é a principal diferença entre uma tarifa e uma cota de importação (quota) "
+            "com efeitos de preço equivalentes, em termos de quem se beneficia da diferença "
+            "entre o preço doméstico e o preço mundial?"
         ),
         "options": [
-            "A) Alto bias → usar rede maior com mais camadas e épocas",
-            "B) Alta variance (overfitting) → obter mais dados ou aplicar regularização",
-            "C) Alto ruído nos dados → coletar um dataset mais limpo",
-            "D) Baixo bias e baixa variance → o modelo está pronto, nenhuma ação necessária",
+            "A) Não há diferença alguma; ambas geram exatamente os mesmos beneficiários",
+            "B) Na tarifa, essa diferença de preço é capturada pelo governo como receita; na cota, essa mesma diferença (a 'renda da cota') é capturada por quem detém as licenças de importação, dependendo de como elas são alocadas",
+            "C) A cota sempre beneficia exclusivamente os consumidores domésticos",
+            "D) A tarifa nunca gera receita, apenas a cota gera renda",
         ],
-        "answer": "B) Alta variance (overfitting) → obter mais dados ou aplicar regularização",
+        "answer": "B) Na tarifa, essa diferença de preço é capturada pelo governo como receita; na cota, essa mesma diferença (a 'renda da cota') é capturada por quem detém as licenças de importação, dependendo de como elas são alocadas",
         "explanation": (
-            "Alta acurácia no treino (95%) + baixa acurácia na validação (70%) "
-            "= gap grande = overfitting = alto variance. "
-            "O slide indica: 'Get more data (to reduce overfitting)' e "
-            "'Apply regularization techniques'. Se a acurácia de treino fosse "
-            "também baixa (ex: 70%), seria alto bias, e a solução seria "
-            "uma rede maior."
+            "Ambas elevam o preço doméstico acima do preço mundial para um dado nível de "
+            "proteção, mas com a tarifa essa diferença se torna receita do governo, "
+            "enquanto com a cota a mesma diferença se torna uma renda de escassez sobre as "
+            "licenças de importação, capturada por quem as detém — o que tem implicações "
+            "sobre se o país protecionista de fato se beneficia dessa renda."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide apresenta L2 regularization adicionando λ·Σw²ᵢ à loss. "
-            "Qual é o efeito desta penalidade na regra de atualização dos pesos?"
+            "Uma Restrição Voluntária de Exportação (VER) costuma ser considerada mais "
+            "prejudicial para o país IMPORTADOR do que uma tarifa ou cota equivalente "
+            "administrada domesticamente. Por quê?"
         ),
         "options": [
-            "A) Os pesos são zerados a cada época antes do gradiente ser aplicado",
-            "B) A atualização se torna wᵢ ← wᵢ(1 - αλ) - α·∂L/∂wᵢ: o fator (1-αλ) decai o peso antes da atualização por gradiente",
-            "C) O learning rate α é multiplicado por λ a cada batch",
-            "D) Pesos negativos são zerados automaticamente pela penalidade quadrática",
+            "A) Porque a VER sempre aumenta o volume de importações, ao contrário da tarifa",
+            "B) Porque, na VER, a renda da escassez é capturada pelos exportadores ESTRANGEIROS, que administram a restrição, e não pelo governo ou importadores do país importador — uma transferência de renda para o exterior que não ocorre com tarifa ou cota administrada domesticamente",
+            "C) Porque a VER é ilegal segundo as regras do comércio internacional, ao contrário da tarifa",
+            "D) Porque a VER elimina toda a produção doméstica do bem protegido",
         ],
-        "answer": "B) A atualização se torna wᵢ ← wᵢ(1 - αλ) - α·∂L/∂wᵢ: o fator (1-αλ) decai o peso antes da atualização por gradiente",
+        "answer": "B) Porque, na VER, a renda da escassez é capturada pelos exportadores ESTRANGEIROS, que administram a restrição, e não pelo governo ou importadores do país importador — uma transferência de renda para o exterior que não ocorre com tarifa ou cota administrada domesticamente",
         "explanation": (
-            "O slide mostra exatamente: 'wi ← wi(1-αλ) - α·∂L/∂wi'. "
-            "O termo (1-αλ) ∈ (0,1) é chamado de 'weight decay' e age como "
-            "'decay-based forgetting': a cada atualização, pesos são ligeiramente "
-            "reduzidos. A menos que um peso receba gradientes grandes e consistentes, "
-            "ele tende a zero. Previne memorização do treino."
+            "Sob uma VER, as firmas/governo do país exportador alocam as licenças de "
+            "exportação limitadas, de modo que a renda de escassez fica no exterior, em vez "
+            "de ir para o tesouro do país importador ou para detentores domésticos de "
+            "licenças — fazendo com que o país importador arque com todo o custo de "
+            "distorção, perdendo a renda para fora."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide afirma: 'L2-regularization with parameter λ is equivalent "
-            "to adding Gaussian noise with variance λ to input'. "
-            "Qual é a intuição por trás dessa equivalência?"
+            "Quando um país concede um subsídio à exportação, qual é o efeito esperado "
+            "sobre o preço DOMÉSTICO do bem subsidiado e sobre os termos de troca do país, "
+            "no caso de um país com poder de mercado (grande)?"
         ),
         "options": [
-            "A) Ruído gaussiano e L2 ambos reduzem o learning rate de forma adaptativa",
-            "B) Modelos mais simples (parâmetros menores) são menos afetados pelo ruído; a penalidade L2 força o modelo a ser simples o suficiente para ser robusto ao ruído de entrada",
-            "C) Ambos adicionam um termo quadrático à função de perda, tornando-a mais convexa",
-            "D) O ruído gaussiano e L2 ambos eliminam features com variância baixa",
+            "A) O preço doméstico cai e os termos de troca melhoram",
+            "B) O preço doméstico sobe (produtores recebem o preço mundial mais o subsídio, e consumidores domésticos pagam esse preço mais alto), enquanto os termos de troca do país tendem a PIORAR, pois o aumento da oferta exportada reduz o preço mundial do bem",
+            "C) Nenhum efeito sobre preços domésticos ou termos de troca, apenas sobre a receita do governo",
+            "D) O subsídio sempre melhora o bem-estar nacional líquido, sem qualquer custo",
         ],
-        "answer": "B) Modelos mais simples (parâmetros menores) são menos afetados pelo ruído; a penalidade L2 força o modelo a ser simples o suficiente para ser robusto ao ruído de entrada",
+        "answer": "B) O preço doméstico sobe (produtores recebem o preço mundial mais o subsídio, e consumidores domésticos pagam esse preço mais alto), enquanto os termos de troca do país tendem a PIORAR, pois o aumento da oferta exportada reduz o preço mundial do bem",
         "explanation": (
-            "O slide explica: 'Bad effect of noise will be minimized with simpler "
-            "models (smaller parameters)'. Um modelo que depende muito de features "
-            "específicas (pesos grandes) é destruído por ruído. L2 força pesos "
-            "pequenos → modelo mais robusto. Para regressão linear, pode-se "
-            "mostrar matematicamente que as duas formulações são equivalentes."
+            "O subsídio à exportação eleva o preço recebido pelos produtores (preço mundial "
+            "mais subsídio), preço que os consumidores domésticos também passam a pagar, "
+            "reduzindo o excedente do consumidor. Para um país com poder de mercado, o "
+            "aumento da oferta exportada reduz o preço mundial do bem, piorando os termos "
+            "de troca — somado ao custo fiscal do subsídio, isso torna o subsídio à "
+            "exportação geralmente redutor de bem-estar para o país que o concede."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide descreve L1 regularization com a atualização: wᵢ ← wᵢ - αλsᵢ - α·∂L/∂wᵢ, "
-            "onde sᵢ = sign(wᵢ). "
-            "Por que L1 tende a produzir pesos exatamente iguais a zero (soluções esparsas)?"
+            "A 'taxa efetiva de proteção' difere da tarifa nominal porque..."
         ),
         "options": [
-            "A) Porque sᵢ = ±1 é constante, então o gradiente da penalidade sempre 'empurra' wᵢ em direção a zero com força constante, podendo cruzar e travar em zero",
-            "B) Porque L1 penaliza pesos grandes mais severamente que L2",
-            "C) Porque o gradiente de |wᵢ| é zero para todos os valores, zerando os pesos",
-            "D) Porque αλ > 1 garante que os pesos sempre diminuam a cada passo",
+            "A) Mede a proteção concedida ao VALOR ADICIONADO de uma etapa de produção, considerando não apenas a tarifa sobre o bem final, mas também as tarifas sobre os insumos importados usados nessa produção",
+            "B) É sempre igual à tarifa nominal multiplicada por dois",
+            "C) Mede apenas o volume de importações afetado pela tarifa, sem relação com preços",
+            "D) É calculada exclusivamente com base no PIB do setor protegido",
         ],
-        "answer": "A) Porque sᵢ = ±1 é constante, então o gradiente da penalidade sempre 'empurra' wᵢ em direção a zero com força constante, podendo cruzar e travar em zero",
+        "answer": "A) Mede a proteção concedida ao VALOR ADICIONADO de uma etapa de produção, considerando não apenas a tarifa sobre o bem final, mas também as tarifas sobre os insumos importados usados nessa produção",
         "explanation": (
-            "Com L1: -αλ·sign(wᵢ) sempre tem magnitude αλ independente do valor de wᵢ. "
-            "Para pesos pequenos, essa força constante pode cruzar zero e 'travar' o "
-            "peso lá. Com L2: -αλ·2wᵢ → 0 conforme wᵢ → 0, nunca chegando exatamente a zero. "
-            "Por isso L1 gera sparsidade (redes com bordas removidas) e L2 gera "
-            "pesos pequenos mas não zero."
+            "Uma tarifa sobre o bem final protege o valor adicionado dessa etapa, mas uma "
+            "tarifa sobre os insumos importados usados pelo mesmo produtor eleva seus "
+            "custos, reduzindo a proteção. A taxa efetiva de proteção = (% de aumento no "
+            "valor adicionado) / (valor adicionado original), podendo ser bem maior (ou "
+            "até negativa) do que a tarifa nominal sobre o bem final isoladamente."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide afirma que 'L2-regularization generally provides better "
-            "performance' que L1. Em que situação L1 seria preferível?"
+            "No diagrama clássico de equilíbrio parcial dos efeitos de uma tarifa, as áreas "
+            "dos dois triângulos de perda de eficiência geralmente representam..."
         ),
         "options": [
-            "A) Quando se deseja interpretabilidade: L1 zera pesos irrelevantes, efetivamente selecionando features e simplificando a rede",
-            "B) Quando o dataset é grande, pois L1 escala melhor com o número de amostras",
-            "C) Quando o modelo usa ReLU, pois L1 é compatível e L2 não",
-            "D) Quando se quer regularização mais forte, pois L1 penaliza mais que L2",
+            "A) A receita tarifária do governo",
+            "B) A perda por distorção na produção (recursos alocados para produção doméstica ineficiente) e a perda por distorção no consumo (consumidores reduzindo consumo abaixo do nível eficiente)",
+            "C) O excedente do produtor antes da tarifa",
+            "D) O excedente do consumidor após a tarifa",
         ],
-        "answer": "A) Quando se deseja interpretabilidade: L1 zera pesos irrelevantes, efetivamente selecionando features e simplificando a rede",
+        "answer": "B) A perda por distorção na produção (recursos alocados para produção doméstica ineficiente) e a perda por distorção no consumo (consumidores reduzindo consumo abaixo do nível eficiente)",
         "explanation": (
-            "O slide afirma: 'L1-regularization leads to sparse parameter learning. "
-            "Zero values of wi can be dropped. Equivalent to dropping edges from "
-            "neural network.' Pesos zero eliminam conexões, tornando a rede menor "
-            "e mais interpretável. Em redes neurais para NLP isso pode identificar "
-            "quais features (palavras, n-gramas) são realmente relevantes."
+            "No diagrama padrão, um retângulo é a receita tarifária do governo (no caso de "
+            "país pequeno) e outro é o ganho de excedente do produtor; os dois triângulos "
+            "remanescentes constituem a perda de eficiência líquida: um pela distorção do "
+            "lado da produção (recursos deslocados para produção doméstica menos "
+            "eficiente) e outro pela distorção do lado do consumo (consumidores excluídos "
+            "do consumo eficiente pelo preço mais alto)."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide descreve Dropout: 'Sample each node in the network with "
-            "probability p. Keep only edges for which both ends are included.' "
-            "O que acontece com os pesos durante a fase de TESTE (inferência)?"
+            "Uma exigência de conteúdo local (local content requirement) obriga uma "
+            "porcentagem mínima de insumos domésticos na fabricação de um produto. Qual é "
+            "o efeito típico dessa política?"
         ),
         "options": [
-            "A) O dropout continua ativo com a mesma probabilidade p do treino",
-            "B) Os pesos de saída de cada neurônio são multiplicados por (1-p) para compensar os neurônios que ficavam desativados durante o treino",
-            "C) Todos os neurônios são sempre descartados para fazer média dos sub-modelos",
-            "D) O modelo seleciona automaticamente a subrede com melhor desempenho no treino",
+            "A) Reduz o custo de produção, pois insumos domésticos são sempre mais baratos que os importados",
+            "B) Funciona como uma proteção implícita aos fornecedores domésticos de insumos, geralmente elevando o custo de produção do bem final, e por isso impõe um custo distorsivo similar a outras barreiras comerciais",
+            "C) Elimina completamente a necessidade de importações no setor afetado",
+            "D) É equivalente a um subsídio à exportação, sem qualquer efeito sobre custos",
         ],
-        "answer": "B) Os pesos de saída de cada neurônio são multiplicados por (1-p) para compensar os neurônios que ficavam desativados durante o treino",
+        "answer": "B) Funciona como uma proteção implícita aos fornecedores domésticos de insumos, geralmente elevando o custo de produção do bem final, e por isso impõe um custo distorsivo similar a outras barreiras comerciais",
         "explanation": (
-            "O slide chama isso de 'weight scaling inference rule (more common)': "
-            "na inferência, usa-se a rede completa mas com pesos multiplicados por "
-            "(1-p). Isso é uma aproximação do ensemble: se um neurônio ficava ativo "
-            "apenas (1-p) fração do tempo no treino, na inferência sua contribuição "
-            "deve ser reduzida proporcionalmente."
+            "A exigência de conteúdo local força os produtores a substituir insumos "
+            "importados potencialmente mais baratos por insumos domésticos possivelmente "
+            "mais caros ou de menor qualidade, elevando o custo de produção do bem final "
+            "(uma proteção implícita ao fornecedor doméstico de insumos) e distorcendo a "
+            "escolha de insumos, gerando um custo de eficiência similar ao de outros "
+            "instrumentos protecionistas, ainda que não incida diretamente sobre o bem "
+            "final importado."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide explica que Dropout 'will resist co-adaptation, unless "
-            "the features are truly synergistic'. "
-            "O que é Feature Co-Adaptation e por que ela é prejudicial?"
+            "Considere uma situação de crescimento da demanda doméstica por um bem "
+            "importado ao longo do tempo. Qual a diferença entre os efeitos protecionistas "
+            "de uma TARIFA fixa e de uma COTA fixa nesse cenário?"
         ),
         "options": [
-            "A) É quando dois filtros convolucionais detectam o mesmo padrão, desperdiçando capacidade",
-            "B) É quando neurônios ajustam seus pesos para depender uns dos outros por ineficiência de treinamento, não por sinergia real, memorando nuances do treino que não generalizam",
-            "C) É quando o learning rate se adapta automaticamente às features mais importantes",
-            "D) É a tendência dos pesos de camadas adjacentes convergirem para valores similares",
+            "A) Ambas mantêm o mesmo grau relativo de proteção ao longo do tempo",
+            "B) Com uma tarifa fixa, as importações podem continuar crescendo; com uma cota fixa em quantidade, todo o crescimento adicional da demanda deve ser suprido pela produção doméstica, tornando a cota progressivamente MAIS restritiva ao longo do tempo",
+            "C) A cota sempre se torna menos restritiva com o crescimento da demanda",
+            "D) A tarifa se torna automaticamente uma cota quando a demanda cresce",
         ],
-        "answer": "B) É quando neurônios ajustam seus pesos para depender uns dos outros por ineficiência de treinamento, não por sinergia real, memorando nuances do treino que não generalizam",
+        "answer": "B) Com uma tarifa fixa, as importações podem continuar crescendo; com uma cota fixa em quantidade, todo o crescimento adicional da demanda deve ser suprido pela produção doméstica, tornando a cota progressivamente MAIS restritiva ao longo do tempo",
         "explanation": (
-            "O slide afirma: 'Uninformative dependencies are sensitive to nuances "
-            "of specific training data → OVERFITTING'. Co-adaptação ocorre quando "
-            "partes da rede treinam em velocidades diferentes, causando que algumas "
-            "partes se 'acostumem' às outras em vez de aprender padrões independentes. "
-            "Dropout força cada neurônio a ser útil mesmo sem a presença de outros, "
-            "criando representações mais robustas."
+            "Sob uma tarifa, o preço doméstico fica fixo em preço mundial mais tarifa, "
+            "independentemente de deslocamentos na demanda, de modo que o volume "
+            "importado ainda pode crescer com a demanda. Sob uma cota em quantidade, o "
+            "volume é fixo, então qualquer aumento da demanda doméstica deve ser atendido "
+            "inteiramente pela produção doméstica, elevando o preço doméstico (e o efeito "
+            "protetor implícito) cada vez mais ao longo do tempo."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Política Comercial",
         "question": (
-            "O slide recomenda para Dropout: 'Better to use a larger network with "
-            "Dropout to enable learning of independent representations'. "
-            "Por que usar uma rede MAIOR com Dropout, em vez de uma menor sem Dropout?"
+            "Direitos antidumping são tarifas aplicadas quando se constata que um "
+            "exportador estrangeiro está praticando dumping. Qual crítica é frequentemente "
+            "feita ao uso desse instrumento na prática da política comercial?"
         ),
         "options": [
-            "A) Porque redes maiores treinam mais rápido com dropout ativado",
-            "B) Porque o dropout efetivamente reduz o tamanho da rede durante o treino; a rede maior compensada pelo dropout tem mais capacidade efetiva que uma rede menor sem regularização",
-            "C) Porque dropout só funciona em redes com mais de 1000 neurônios por camada",
-            "D) Porque redes menores nunca sofrem de overfitting e não precisam de dropout",
+            "A) Direitos antidumping nunca são permitidos pelas regras internacionais de comércio",
+            "B) Na prática, processos antidumping são frequentemente usados como instrumento de protecionismo disfarçado, já que critérios de cálculo da margem de dumping podem ser aplicados de forma a favorecer a indústria doméstica reclamante, mesmo quando a prática de dumping genuíno é discutível",
+            "C) Direitos antidumping eliminam totalmente a possibilidade de qualquer importação do produto em questão",
+            "D) Direitos antidumping são aplicados automaticamente sem qualquer processo de investigação",
         ],
-        "answer": "B) Porque o dropout efetivamente reduz o tamanho da rede durante o treino; a rede maior compensada pelo dropout tem mais capacidade efetiva que uma rede menor sem regularização",
+        "answer": "B) Na prática, processos antidumping são frequentemente usados como instrumento de protecionismo disfarçado, já que critérios de cálculo da margem de dumping podem ser aplicados de forma a favorecer a indústria doméstica reclamante, mesmo quando a prática de dumping genuíno é discutível",
         "explanation": (
-            "Se p=0.5 e a rede tem N neurônios, cada forward pass usa ~N/2 neurônios "
-            "em média. Para manter a capacidade expressiva suficiente nas subredes "
-            "amostradas, a rede maior compensa. Além disso, a rede maior aprende "
-            "representações mais redundantes e independentes — exatamente o que "
-            "o dropout encoraja."
+            "Embora formalmente voltadas a combater preços predatórios/injustos, as "
+            "investigações antidumping envolvem escolhas metodológicas discricionárias "
+            "(ex: construção de um 'valor normal' usando estimativas de custo em vez de "
+            "preços reais de mercado doméstico) que críticos apontam como tendendo a "
+            "favorecer a constatação de dumping, tornando o instrumento, na prática, "
+            "frequentemente usado para proteger indústrias domésticas sob a justificativa "
+            "de 'comércio justo'."
+        ),
+    },
+
+    # ══════════════════════════════════════════════════════
+    # ECONOMIA POLÍTICA DA POLÍTICA COMERCIAL — Argumentos pró e contra livre comércio (Q31–40)
+    # ══════════════════════════════════════════════════════
+    {
+        "topic": "Economia Política",
+        "question": (
+            "O argumento da 'falha de mercado doméstica' para justificar proteção "
+            "comercial sustenta que, na presença de uma externalidade ou distorção "
+            "doméstica, uma tarifa pode melhorar o bem-estar. Qual é a principal crítica a "
+            "esse argumento, segundo o princípio da especificidade (specificity rule)?"
+        ),
+        "options": [
+            "A) Tarifas nunca podem corrigir nenhum tipo de falha de mercado, mesmo parcialmente",
+            "B) Embora a tarifa possa gerar algum ganho de segunda melhor opção, uma política DOMÉSTICA dirigida diretamente à fonte da falha de mercado é geralmente mais eficiente, pois ataca o problema na origem sem distorcer adicionalmente o consumo",
+            "C) A política de comércio é sempre superior a qualquer política doméstica, pois afeta também os termos de troca",
+            "D) A falha de mercado doméstica só pode ser corrigida por meio de acordos comerciais internacionais, nunca por políticas internas",
+        ],
+        "answer": "B) Embora a tarifa possa gerar algum ganho de segunda melhor opção, uma política DOMÉSTICA dirigida diretamente à fonte da falha de mercado é geralmente mais eficiente, pois ataca o problema na origem sem distorcer adicionalmente o consumo",
+        "explanation": (
+            "Pela regra da especificidade, a política mais eficiente ataca a distorção da "
+            "forma mais direta possível. Usar uma tarifa para corrigir um problema "
+            "puramente doméstico introduz uma distorção adicional desnecessária no "
+            "consumo/comércio, enquanto uma política doméstica bem direcionada resolve o "
+            "problema sem esse custo extra — tornando a tarifa uma ferramenta de 'segunda "
+            "melhor opção' e geralmente inferior a uma política doméstica bem direcionada."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Economia Política",
         "question": (
-            "O slide descreve Bagging como: amostrar com reposição, treinar k modelos, "
-            "e fazer média das predições. "
-            "Por que a média reduz a variance em comparação com um único modelo?"
+            "O 'argumento da indústria nascente' (infant industry argument) defende "
+            "proteção temporária para indústrias jovens. Qual é a principal condição "
+            "teórica necessária para que esse argumento seja válido, e qual a crítica mais "
+            "comum a ele?"
         ),
         "options": [
-            "A) A média elimina o bias de cada modelo individual",
-            "B) Se os erros dos modelos individuais são independentes, a variância da média de k modelos é reduzida por um fator de k em relação à variância de um modelo único",
-            "C) A média aumenta o bias mas reduz o noise irredutível",
-            "D) Cada modelo individual tem variance zero quando treinado em bootstrap samples",
+            "A) A condição é que a indústria nunca se torne competitiva; a crítica é que isso nunca ocorre na prática",
+            "B) A condição é que existam benefícios futuros (ex: aprendizagem, externalidades de conhecimento) suficientes para compensar as perdas atuais, não capturados sem intervenção; a crítica é que, na prática, muitas indústrias protegidas nunca se tornam competitivas, perpetuando a proteção indefinidamente",
+            "C) A condição é que o país tenha moeda fraca; a crítica é que isso encarece insumos importados",
+            "D) A condição é que o setor seja exportador desde o início; a crítica é que setores exportadores nunca precisam de proteção",
         ],
-        "answer": "B) Se os erros dos modelos individuais são independentes, a variância da média de k modelos é reduzida por um fator de k em relação à variância de um modelo único",
+        "answer": "B) A condição é que existam benefícios futuros (ex: aprendizagem, externalidades de conhecimento) suficientes para compensar as perdas atuais, não capturados sem intervenção; a crítica é que, na prática, muitas indústrias protegidas nunca se tornam competitivas, perpetuando a proteção indefinidamente",
         "explanation": (
-            "Matematicamente: Var(média de k variáveis independentes) = Var(X)/k. "
-            "Na prática, os modelos não são completamente independentes (treinados "
-            "em subsets do mesmo dataset), então a redução é parcial. O slide nota: "
-            "'Predictions will be positively correlated → variance proportional to "
-            "level of correlation'. Mas mesmo imperfecto, é melhor que um único modelo."
+            "Teoricamente, exige uma falha de mercado genuína (externalidades de "
+            "aprendizagem não apropriáveis pela firma, ou imperfeições no mercado de "
+            "crédito) que justifique o apoio temporário. As críticas mais comuns incluem a "
+            "tendência política de a proteção 'temporária' se tornar permanente uma vez "
+            "estabelecido um lobby doméstico, a dificuldade de identificar corretamente "
+            "indústrias promissoras ex ante, e o fato de que um subsídio direcionado à "
+            "falha real costuma ser superior a uma tarifa, segundo a regra da "
+            "especificidade."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Economia Política",
         "question": (
-            "O slide afirma que Early Stopping é 'Almost always used'. "
-            "Como ele funciona e o que monitora?"
+            "Por que, segundo a economia política da política comercial, é comum observar "
+            "políticas protecionistas que beneficiam um pequeno grupo de produtores "
+            "concentrados, mesmo quando o custo agregado para a sociedade é maior que o "
+            "benefício?"
         ),
         "options": [
-            "A) Para o treinamento quando o learning rate atinge um valor muito pequeno",
-            "B) Monitora o erro de validação durante o treino e para quando o erro de validação começa a aumentar, salvando o modelo do ponto de menor erro de validação",
-            "C) Para o treinamento após um número fixo de épocas definido pelo usuário",
-            "D) Monitora o erro de treino e para quando ele atinge zero, evitando overfitting",
+            "A) Porque consumidores sempre se organizam de forma mais eficaz que produtores",
+            "B) Porque os benefícios da proteção se concentram em um grupo pequeno e bem organizado, com forte incentivo para se mobilizar politicamente, enquanto os custos se difundem por um grande número de consumidores, cada um afetado de forma pequena — um problema clássico de ação coletiva",
+            "C) Porque o governo sempre maximiza o bem-estar agregado, e a proteção é, de fato, eficiente",
+            "D) Porque produtores pagam impostos mais altos e, por isso, têm direito legal a compensação",
         ],
-        "answer": "B) Monitora o erro de validação durante o treino e para quando o erro de validação começa a aumentar, salvando o modelo do ponto de menor erro de validação",
+        "answer": "B) Porque os benefícios da proteção se concentram em um grupo pequeno e bem organizado, com forte incentivo para se mobilizar politicamente, enquanto os custos se difundem por um grande número de consumidores, cada um afetado de forma pequena — um problema clássico de ação coletiva",
         "explanation": (
-            "O gráfico do slide mostra erro de treino e validação ao longo das épocas. "
-            "Inicialmente ambos diminuem. Eventualmente o treino continua melhorando "
-            "mas a validação piora (overfitting começa). Early stopping salva o modelo "
-            "no ponto mínimo da validação, atuando como regularizador sem modificar "
-            "a função de perda."
+            "Grupos de interesse concentrados e bem organizados (ex: uma indústria "
+            "específica) enfrentam grandes ganhos per capita e baixos custos de "
+            "organização, tornando o lobby por proteção racional; consumidores difusos "
+            "arcam apenas com um pequeno custo individual cada, fazendo com que o custo de "
+            "se organizar para se opor exceda o benefício individual esperado — gerando um "
+            "viés político a favor de políticas protecionistas mesmo quando o bem-estar "
+            "agregado líquido cai."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Economia Política",
         "question": (
-            "O slide descreve Penalizing Hidden Units: L' = L + λ·Σ|hᵢ|, "
-            "onde hᵢ são os valores das unidades ocultas. "
-            "Qual é o efeito prático de penalizar as ativações (não os pesos)?"
+            "A chamada 'função de formação de tarifas' busca explicar o NÍVEL de proteção "
+            "observado em diferentes setores como resultado de..."
         ),
         "options": [
-            "A) Os pesos da rede são forçados a zero, removendo conexões desnecessárias",
-            "B) A rede aprende representações esparsas: na maioria dos exemplos, poucos neurônios ficam ativos ao mesmo tempo",
-            "C) As ativações são normalizadas automaticamente para ter média zero e variância 1",
-            "D) O gradiente explodente é prevenido pois as ativações ficam sempre abaixo de 1",
+            "A) Cálculos puramente técnicos de bem-estar realizados por economistas do governo, sem influência política",
+            "B) Pressão política exercida por grupos de interesse de cada setor, de modo que setores mais organizados ou com maior capacidade de mobilização tendem a obter MAIOR proteção, independentemente de seu real impacto sobre o bem-estar agregado",
+            "C) Apenas o tamanho da população empregada no setor, sem qualquer outro fator",
+            "D) Decisões aleatórias tomadas por sorteio entre os setores afetados pelo comércio",
         ],
-        "answer": "B) A rede aprende representações esparsas: na maioria dos exemplos, poucos neurônios ficam ativos ao mesmo tempo",
+        "answer": "B) Pressão política exercida por grupos de interesse de cada setor, de modo que setores mais organizados ou com maior capacidade de mobilização tendem a obter MAIOR proteção, independentemente de seu real impacto sobre o bem-estar agregado",
         "explanation": (
-            "Penalizar |hᵢ| encoraja que as ativações sejam zero na maioria dos casos. "
-            "Resultado: representações esparsas — cada padrão é representado por "
-            "poucos neurônios ativos, similar ao que observamos no córtex visual. "
-            "Isso é diferente de penalizar pesos (L1/L2): aqui controlamos "
-            "diretamente quão ativas as unidades ficam, não seus pesos."
+            "Modelos empíricos de economia política (do tipo 'proteção à venda') tentam "
+            "explicar a variação setorial nos níveis de proteção em função da intensidade "
+            "de lobby, da concentração/organização da indústria, de contribuições "
+            "políticas e do peso dado pelo governo ao bem-estar versus apoio político — a "
+            "proteção acaba correlacionada com a capacidade de organização política, e não "
+            "puramente com critérios de eficiência."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Economia Política",
         "question": (
-            "O slide descreve Unsupervised Pre-training como inicializar uma "
-            "rede usando autoencoders antes do treinamento supervisionado. "
-            "Qual é o benefício principal dessa técnica?"
+            "Mesmo reconhecendo que existem, em teoria, casos específicos em que uma "
+            "intervenção comercial poderia melhorar o bem-estar, muitos economistas "
+            "defendem o livre comércio como uma 'regra de bolso' (rule of thumb) política. "
+            "Qual é o principal argumento para essa posição pragmática?"
         ),
         "options": [
-            "A) Elimina a necessidade de dados rotulados para o treinamento final",
-            "B) Inicializa os pesos próximos de uma boa região do espaço de parâmetros (perto do ótimo global), melhorando convergência e atuando como regularizador",
-            "C) Garante que o modelo não vai overfittar, pois os pesos já estão otimizados",
-            "D) Permite usar learning rates muito maiores durante o fine-tuning",
+            "A) Porque casos de melhoria teórica nunca existem na prática",
+            "B) Porque, na prática política real, abrir excessões para intervenção, mesmo bem fundamentadas teoricamente, cria oportunidades para grupos de interesse capturarem a política comercial em seu próprio benefício; uma regra simples e geral de livre comércio reduz o espaço para lobby e captura, mesmo sacrificando alguns ganhos teóricos de casos especiais",
+            "C) Porque o livre comércio é a única política permitida pela Constituição de qualquer país",
+            "D) Porque o livre comércio garante sempre superávit comercial",
         ],
-        "answer": "B) Inicializa os pesos próximos de uma boa região do espaço de parâmetros (perto do ótimo global), melhorando convergência e atuando como regularizador",
+        "answer": "B) Porque, na prática política real, abrir excessões para intervenção, mesmo bem fundamentadas teoricamente, cria oportunidades para grupos de interesse capturarem a política comercial em seu próprio benefício; uma regra simples e geral de livre comércio reduz o espaço para lobby e captura, mesmo sacrificando alguns ganhos teóricos de casos especiais",
         "explanation": (
-            "O slide afirma: 'Pretraining already brings the activations of the "
-            "neural network to the manifold of the data distribution' e "
-            "'Pretraining initializes the problem closer to the basin of global optima'. "
-            "Isso resolve dois problemas: inicializações ruins que levam a mínimos locais "
-            "ruins, e overfitting (pois o pretraining aprende estrutura dos dados sem labels)."
+            "Mesmo admitindo que a intervenção caso a caso poderia, ocasionalmente, "
+            "melhorar o bem-estar em teoria, permitir desvios discricionários do livre "
+            "comércio abre espaço para lobby e captura da política comercial por "
+            "interesses especiais. Uma regra simples, transparente e geral de livre "
+            "comércio, sem excessões discricionárias, limita esse espaço para distorções "
+            "políticas — um argumento distinto do argumento puramente econômico de "
+            "eficiência a favor do livre comércio."
         ),
     },
     {
-        "topic": "Regularização",
+        "topic": "Economia Política",
         "question": (
-            "Segundo o slide, qual é a principal diferença entre Bagging e Dropout "
-            "como métodos de ensemble?"
+            "O modelo de Brander-Spencer sobre política comercial estratégica analisa "
+            "setores oligopolistas com concorrência internacional (ex: dois fabricantes de "
+            "aeronaves de países diferentes). Qual é a lógica central desse argumento para "
+            "subsídios à exportação?"
         ),
         "options": [
-            "A) Bagging usa redes diferentes com arquiteturas distintas; Dropout usa uma única arquitetura",
-            "B) Bagging treina k modelos completos e independentes (ineficiente); Dropout simula o ensemble de 2ⁿ subredes compartilhando pesos em um único modelo (eficiente)",
-            "C) Dropout reduz bias; Bagging reduz variance",
-            "D) Bagging só funciona com modelos lineares; Dropout funciona com redes neurais profundas",
+            "A) Subsídios à exportação sempre melhoram o bem-estar mundial agregado nesses setores",
+            "B) Em um jogo estratégico entre duas firmas com lucros de oligopólio em jogo, um subsídio à exportação pode, em certas condições, deslocar lucros (rent-shifting) da firma estrangeira para a firma doméstica, aumentando o lucro da firma nacional em mais do que o custo do subsídio para o governo doméstico",
+            "C) Subsídios à exportação eliminam totalmente a concorrência estrangeira em qualquer caso",
+            "D) O modelo mostra que tarifas são sempre superiores a subsídios em mercados oligopolistas",
         ],
-        "answer": "B) Bagging treina k modelos completos e independentes (ineficiente); Dropout simula o ensemble de 2ⁿ subredes compartilhando pesos em um único modelo (eficiente)",
+        "answer": "B) Em um jogo estratégico entre duas firmas com lucros de oligopólio em jogo, um subsídio à exportação pode, em certas condições, deslocar lucros (rent-shifting) da firma estrangeira para a firma doméstica, aumentando o lucro da firma nacional em mais do que o custo do subsídio para o governo doméstico",
         "explanation": (
-            "O slide menciona: 'Main challenge [of Bagging] is to construct multiple "
-            "training models → highly inefficient'. O Dropout resolve isso: com n "
-            "neurônios e p=0.5, existem 2ⁿ subredes possíveis, todas compartilhando "
-            "pesos. Cada forward pass treina uma subrede diferente. Na inferência, "
-            "o weight scaling aproxima a média do ensemble sem custo adicional."
+            "O compromisso governamental crível com um subsídio à exportação pode alterar "
+            "o equilíbrio estratégico do tipo Cournot/Stackelberg, induzindo a rival "
+            "estrangeira a produzir menos, deslocando parte da renda de oligopólio para a "
+            "firma doméstica. Em princípio, isso pode tornar o país subsidiador melhor de "
+            "vida, embora críticos notem que o resultado é altamente sensível a hipóteses "
+            "(estrutura de mercado, retaliação estrangeira, forma exata do jogo), não "
+            "sendo uma prescrição de política robusta em geral."
+        ),
+    },
+    {
+        "topic": "Economia Política",
+        "question": (
+            "Por que negociações comerciais RECÍPROCAS (em que um país reduz suas tarifas "
+            "em troca de reduções do parceiro) são politicamente mais fáceis de implementar "
+            "do que reduções tarifárias UNILATERAIS, mesmo quando a redução unilateral "
+            "também beneficiaria o país que a realiza?"
+        ),
+        "options": [
+            "A) Porque reduções recíprocas nunca enfrentam oposição de nenhum grupo doméstico",
+            "B) Porque a reciprocidade mobiliza politicamente os EXPORTADORES domésticos como contrapeso político aos produtores import-competidores que se opõem à abertura, equilibrando as forças políticas a favor da liberalização — algo que falta em uma redução puramente unilateral",
+            "C) Porque acordos recíprocos eliminam toda a necessidade de ratificação parlamentar",
+            "D) Porque a reciprocidade é exigida por lei internacional em todos os países",
+        ],
+        "answer": "B) Porque a reciprocidade mobiliza politicamente os EXPORTADORES domésticos como contrapeso político aos produtores import-competidores que se opõem à abertura, equilibrando as forças políticas a favor da liberalização — algo que falta em uma redução puramente unilateral",
+        "explanation": (
+            "A liberalização unilateral ativa o lobby import-competidor contra ela sem "
+            "criar uma contrapartida política doméstica. Já as negociações recíprocas dão "
+            "aos exportadores domésticos um interesse direto no resultado (já que ganham "
+            "acesso a mercados estrangeiros em troca), criando apoio político capaz de "
+            "compensar a oposição import-competidora — razão histórica pela qual a "
+            "barganha reciprocal do GATT/OMC tem sido politicamente mais viável do que "
+            "cortes tarifários unilaterais."
+        ),
+    },
+    {
+        "topic": "Economia Política",
+        "question": (
+            "Modelos de 'votante mediano' aplicados à política comercial costumam prever "
+            "proteção quando..."
+        ),
+        "options": [
+            "A) Os ganhos do comércio livre estão distribuídos igualmente entre toda a população, sem nenhum perdedor identificável",
+            "B) Os custos do livre comércio recaem de forma concentrada sobre um grupo que inclui o eleitor mediano ou tem peso político desproporcional, fazendo com que medidas protecionistas sejam politicamente atrativas mesmo gerando perda de bem-estar agregado",
+            "C) O comércio livre nunca gera perdedores em nenhuma faixa de renda",
+            "D) A proteção comercial é sempre rejeitada pelo eleitor mediano, independentemente do setor",
+        ],
+        "answer": "B) Os custos do livre comércio recaem de forma concentrada sobre um grupo que inclui o eleitor mediano ou tem peso político desproporcional, fazendo com que medidas protecionistas sejam politicamente atrativas mesmo gerando perda de bem-estar agregado",
+        "explanation": (
+            "Modelos de votante mediano preveem que, quando os custos distributivos da "
+            "liberalização comercial recaem fortemente sobre um grupo pivotal para o "
+            "resultado político (ex: trabalhadores de renda mediana em setores "
+            "import-competidores), políticas protecionistas tornam-se mais prováveis de "
+            "serem adotadas/mantidas politicamente, mesmo que o bem-estar agregado líquido "
+            "do livre comércio seja positivo — destacando por que os efeitos distributivos "
+            "(e não apenas agregados) importam para os resultados da política comercial."
+        ),
+    },
+    {
+        "topic": "Economia Política",
+        "question": (
+            "Acordos comerciais internacionais (como os negociados sob o GATT/OMC) também "
+            "são vistos como um mecanismo para os governos se 'comprometerem' (commitment "
+            "device) com políticas de livre comércio. Qual problema esse compromisso busca "
+            "resolver?"
+        ),
+        "options": [
+            "A) O problema de que, sem um acordo internacional vinculante, governos podem ceder a pressões protecionistas de grupos de interesse no futuro, revertendo políticas de liberalização que seriam benéficas no longo prazo — o acordo torna mais custoso reverter a abertura",
+            "B) O problema de que sem acordos internacionais as tarifas seriam sempre iguais a zero",
+            "C) O problema de garantir que todos os países tenham exatamente a mesma moeda",
+            "D) O problema de que sem acordos as empresas não saberiam produzir bens de exportação",
+        ],
+        "answer": "A) O problema de que, sem um acordo internacional vinculante, governos podem ceder a pressões protecionistas de grupos de interesse no futuro, revertendo políticas de liberalização que seriam benéficas no longo prazo — o acordo torna mais custoso reverter a abertura",
+        "explanation": (
+            "Acordos comerciais internacionais funcionam, em parte, como um mecanismo de "
+            "compromisso: ao vincular níveis tarifários e criar custos (reputacionais, "
+            "legais, de retaliação) para retrocessos, ajudam governos a resistir a futuras "
+            "pressões protecionistas domésticas que seriam difíceis de recusar caso a caso, "
+            "resolvendo um problema de inconsistência temporal na política comercial."
+        ),
+    },
+    {
+        "topic": "Economia Política",
+        "question": (
+            "Uma das justificativas econômicas para a existência de acordos comerciais "
+            "multilaterais como o GATT/OMC é a chamada 'externalidade dos termos de troca'. "
+            "O que essa externalidade descreve?"
+        ),
+        "options": [
+            "A) Que cada país, ao definir sua tarifa unilateralmente sem considerar o impacto sobre os parceiros comerciais, tende a escolher tarifas mais altas do que seria coletivamente eficiente, pois ignora o efeito negativo sobre os parceiros — análogo a um dilema do prisioneiro entre países",
+            "B) Que termos de troca nunca são afetados por políticas comerciais nacionais",
+            "C) Que apenas países pequenos sofrem dessa externalidade",
+            "D) Que a externalidade só existe quando há câmbio fixo entre os países",
+        ],
+        "answer": "A) Que cada país, ao definir sua tarifa unilateralmente sem considerar o impacto sobre os parceiros comerciais, tende a escolher tarifas mais altas do que seria coletivamente eficiente, pois ignora o efeito negativo sobre os parceiros — análogo a um dilema do prisioneiro entre países",
+        "explanation": (
+            "Quando cada país define tarifas unilateralmente buscando explorar ganhos de "
+            "termos de troca (tarifa ótima para país grande), ele impõe uma externalidade "
+            "negativa sobre os parceiros comerciais (piorando seus termos de troca) que não "
+            "leva em conta. Se todos os países agirem assim, o resultado é um equilíbrio de "
+            "'guerra tarifária' com bem-estar menor para todos — análogo a um dilema do "
+            "prisioneiro. Acordos multilaterais internalizam essa externalidade ao fazer os "
+            "países concordarem mutuamente em reduzir tarifas, alcançando um resultado "
+            "cooperativo mais eficiente."
+        ),
+    },
+
+    # ══════════════════════════════════════════════════════
+    # DESENVOLVIMENTO E CONTROVÉRSIAS — ISI, GATT/OMC, integração regional (Q41–50)
+    # ══════════════════════════════════════════════════════
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "A estratégia de Substituição de Importações (ISI), amplamente adotada por "
+            "países em desenvolvimento (especialmente na América Latina) entre as décadas "
+            "de 1950 e 1970, consistia em..."
+        ),
+        "options": [
+            "A) Eliminar toda proteção comercial para forçar a indústria nacional a competir imediatamente no mercado mundial",
+            "B) Proteger, via tarifas altas, cotas e outras barreiras, indústrias domésticas nascentes que produziam bens anteriormente importados, com o objetivo de promover a industrialização doméstica e reduzir a dependência de importações de manufaturados",
+            "C) Subsidiar exclusivamente a exportação de produtos primários (commodities) para gerar divisas",
+            "D) Adotar câmbio totalmente flutuante para estimular as exportações",
+        ],
+        "answer": "B) Proteger, via tarifas altas, cotas e outras barreiras, indústrias domésticas nascentes que produziam bens anteriormente importados, com o objetivo de promover a industrialização doméstica e reduzir a dependência de importações de manufaturados",
+        "explanation": (
+            "A ISI buscava construir capacidade manufatureira doméstica protegendo-a da "
+            "concorrência externa (tarifas altas, cotas, licenciamento de importações), "
+            "baseada na ideia de que indústrias protegidas eventualmente amadureceriam e se "
+            "tornariam competitivas internacionalmente — frequentemente justificada por "
+            "argumentos do tipo indústria nascente e pelo pessimismo sobre os termos de "
+            "troca de exportadores de bens primários."
+        ),
+    },
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "Qual foi uma das principais críticas, na prática, à estratégia de substituição "
+            "de importações adotada por vários países em desenvolvimento?"
+        ),
+        "options": [
+            "A) As indústrias protegidas se tornaram rapidamente as mais eficientes do mundo, dispensando qualquer proteção em poucos anos",
+            "B) A proteção prolongada, sem pressão competitiva externa, frequentemente resultou em indústrias ineficientes e de alto custo, que nunca se tornaram competitivas internacionalmente, além de gerar mercados domésticos pequenos e pouco diversificados que limitavam ganhos de escala",
+            "C) A ISI eliminou totalmente a necessidade de qualquer importação de bens de capital",
+            "D) A ISI sempre gerou superávits comerciais expressivos e sustentáveis",
+        ],
+        "answer": "B) A proteção prolongada, sem pressão competitiva externa, frequentemente resultou em indústrias ineficientes e de alto custo, que nunca se tornaram competitivas internacionalmente, além de gerar mercados domésticos pequenos e pouco diversificados que limitavam ganhos de escala",
+        "explanation": (
+            "Críticos apontam que a proteção prolongada e, em muitos casos, indiscriminada, "
+            "removeu a disciplina competitiva, permitindo a persistência de indústrias "
+            "ineficientes e de alto custo (as 'indústrias nascentes' que nunca cresceram). "
+            "Combinada a mercados domésticos relativamente pequenos, isso limitou as "
+            "economias de escala alcançáveis, contribuindo para um crescimento de "
+            "produtividade mais lento do que em estratégias orientadas para exportação "
+            "seguidas por algumas economias do Leste Asiático em períodos parecidos."
+        ),
+    },
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "Em contraste com a ISI, a estratégia de crescimento orientado para exportações "
+            "(export-oriented growth), associada a vários países do Leste Asiático, "
+            "caracterizou-se por..."
+        ),
+        "options": [
+            "A) Fechamento total da economia ao comércio internacional",
+            "B) Políticas que incentivavam ativamente a produção para os mercados externos, expondo as indústrias domésticas à disciplina da concorrência internacional desde estágios relativamente iniciais",
+            "C) Proibição legal de qualquer importação de bens de consumo",
+            "D) Dependência exclusiva da exportação de produtos primários sem qualquer industrialização",
+        ],
+        "answer": "B) Políticas que incentivavam ativamente a produção para os mercados externos, expondo as indústrias domésticas à disciplina da concorrência internacional desde estágios relativamente iniciais",
+        "explanation": (
+            "Estratégias orientadas para exportação promoveram ativamente exportações "
+            "manufaturadas por meio de incentivos direcionados (fiscais, de crédito, "
+            "câmbio competitivo), frequentemente ainda usando algumas ferramentas de "
+            "política industrial, mas expondo cruciallmente as firmas à disciplina e às "
+            "oportunidades de escala dos mercados internacionais (não apenas domésticos) — "
+            "frequentemente citado, com debate sobre os mecanismos causais exatos, como "
+            "fator contribuinte ao rápido crescimento de algumas economias do Leste "
+            "Asiático em relação a economias focadas na ISI no mesmo período."
+        ),
+    },
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "Um dos princípios fundamentais do GATT (e posteriormente da OMC) é o da "
+            "'Nação Mais Favorecida' (Most Favored Nation - MFN). O que esse princípio "
+            "determina?"
+        ),
+        "options": [
+            "A) Que um país deve sempre dar tratamento PIOR aos seus parceiros comerciais mais favorecidos",
+            "B) Que qualquer vantagem comercial concedida por um país-membro a QUALQUER outro país deve ser estendida automaticamente a TODOS os demais países-membros, promovendo não-discriminação entre parceiros comerciais (com exceções como uniões aduaneiras/áreas de livre comércio)",
+            "C) Que apenas o país economicamente mais poderoso recebe tratamento preferencial automático",
+            "D) Que tarifas devem ser sempre iguais a zero entre membros do GATT/OMC",
+        ],
+        "answer": "B) Que qualquer vantagem comercial concedida por um país-membro a QUALQUER outro país deve ser estendida automaticamente a TODOS os demais países-membros, promovendo não-discriminação entre parceiros comerciais (com exceções como uniões aduaneiras/áreas de livre comércio)",
+        "explanation": (
+            "A cláusula MFN é um princípio fundamental de não-discriminação: qualquer "
+            "concessão tarifária ou vantagem comercial dada a um parceiro deve, em geral, "
+            "ser estendida incondicionalmente a todos os demais membros do GATT/OMC, "
+            "evitando uma teia de acordos bilaterais preferenciais — com exceções notáveis "
+            "para acordos comerciais regionais (uniões aduaneiras e áreas de livre "
+            "comércio) e tratamento especial para países em desenvolvimento."
+        ),
+    },
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "O GATT (1947) e suas sucessivas 'rodadas' de negociação (ex: Rodada Kennedy, "
+            "Rodada Tóquio, Rodada Uruguai) tiveram como principal resultado histórico..."
+        ),
+        "options": [
+            "A) O aumento generalizado de tarifas entre os países-membros, para proteger as indústrias do pós-guerra",
+            "B) A redução substancial e progressiva das tarifas médias sobre bens industriais entre os países participantes, ao longo de várias décadas, por meio de negociações multilaterais recíprocas",
+            "C) A criação imediata de uma moeda única mundial",
+            "D) A abolição completa de qualquer forma de política comercial entre os membros, incluindo cotas e subsídios, já na primeira rodada",
+        ],
+        "answer": "B) A redução substancial e progressiva das tarifas médias sobre bens industriais entre os países participantes, ao longo de várias décadas, por meio de negociações multilaterais recíprocas",
+        "explanation": (
+            "Sucessivas rodadas do GATT negociaram, de forma reciprocal, reduções "
+            "tarifárias progressivas entre um número crescente de países-membros, "
+            "reduzindo substancialmente as tarifas médias sobre bens manufaturados ao longo "
+            "das décadas do pós-guerra; barreiras não-tarifárias, serviços, propriedade "
+            "intelectual e agricultura foram abordados de forma mais completa apenas em "
+            "rodadas posteriores, especialmente a Rodada Uruguai, que também criou a OMC."
+        ),
+    },
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "A criação da Organização Mundial do Comércio (OMC), em 1995, ao final da "
+            "Rodada Uruguai, ampliou o escopo das negociações comerciais multilaterais em "
+            "relação ao GATT original. Quais áreas passaram a ser incorporadas de forma "
+            "mais explícita?"
+        ),
+        "options": [
+            "A) Apenas tarifas sobre bens industriais, exatamente como no GATT original, sem nenhuma mudança",
+            "B) Comércio de serviços (GATS), propriedade intelectual (TRIPS) e um mecanismo de solução de controvérsias mais formal e vinculante entre os países-membros, além de manter e ampliar a negociação sobre bens",
+            "C) Política monetária e taxas de câmbio entre os países-membros",
+            "D) Políticas de imigração e movimento de trabalhadores entre fronteiras",
+        ],
+        "answer": "B) Comércio de serviços (GATS), propriedade intelectual (TRIPS) e um mecanismo de solução de controvérsias mais formal e vinculante entre os países-membros, além de manter e ampliar a negociação sobre bens",
+        "explanation": (
+            "A OMC, sucedendo o GATT, ampliou o escopo do sistema multilateral de comércio "
+            "além de bens, incluindo comércio de serviços (GATS) e proteção à propriedade "
+            "intelectual (TRIPS), além de estabelecer um mecanismo de solução de "
+            "controvérsias mais formal e vinculante (com processo de apelação) para "
+            "resolver disputas comerciais entre membros — uma expansão institucional "
+            "significativa em relação ao GATT original."
+        ),
+    },
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "A Rodada de Doha, lançada pela OMC em 2001 com foco declarado em questões de "
+            "desenvolvimento, é frequentemente citada como exemplo de..."
+        ),
+        "options": [
+            "A) Uma negociação concluída rapidamente e com pleno sucesso em todas as suas metas originais",
+            "B) Um processo de negociação multilateral que enfrentou impasses prolongados, especialmente em torno de subsídios agrícolas dos países desenvolvidos e do acesso a mercados para países em desenvolvimento, ilustrando as dificuldades crescentes de se alcançar consenso entre um número grande e diverso de membros da OMC",
+            "C) A primeira rodada do GATT, anterior à criação da OMC",
+            "D) Uma rodada focada exclusivamente em tarifas sobre produtos eletrônicos",
+        ],
+        "answer": "B) Um processo de negociação multilateral que enfrentou impasses prolongados, especialmente em torno de subsídios agrícolas dos países desenvolvidos e do acesso a mercados para países em desenvolvimento, ilustrando as dificuldades crescentes de se alcançar consenso entre um número grande e diverso de membros da OMC",
+        "explanation": (
+            "A Rodada de Doha, destinada a tratar de preocupações de países em "
+            "desenvolvimento (especialmente subsídios agrícolas e acesso a mercados), "
+            "tornou-se um exemplo frequentemente citado da dificuldade de alcançar consenso "
+            "multilateral entre o conjunto grande e heterogêneo de membros da OMC, "
+            "contribuindo para um deslocamento mais amplo em direção a acordos comerciais "
+            "bilaterais e regionais como via alternativa de liberalização."
+        ),
+    },
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "Segundo a análise clássica de Jacob Viner sobre uniões aduaneiras, qual é a "
+            "diferença entre 'criação de comércio' (trade creation) e 'desvio de comércio' "
+            "(trade diversion)?"
+        ),
+        "options": [
+            "A) Criação de comércio ocorre quando o país substitui um fornecedor doméstico ineficiente por um fornecedor mais eficiente DENTRO da união aduaneira (ganho de eficiência); desvio de comércio ocorre quando o país substitui um fornecedor mais eficiente de FORA da união por um fornecedor menos eficiente DENTRO da união, apenas por causa da tarifa preferencial (perda de eficiência)",
+            "B) Criação e desvio de comércio são sinônimos e sempre geram o mesmo efeito sobre o bem-estar",
+            "C) Desvio de comércio ocorre apenas quando um país sai de uma união aduaneira",
+            "D) Criação de comércio só pode ocorrer entre países que já tinham tarifa zero antes da união",
+        ],
+        "answer": "A) Criação de comércio ocorre quando o país substitui um fornecedor doméstico ineficiente por um fornecedor mais eficiente DENTRO da união aduaneira (ganho de eficiência); desvio de comércio ocorre quando o país substitui um fornecedor mais eficiente de FORA da união por um fornecedor menos eficiente DENTRO da união, apenas por causa da tarifa preferencial (perda de eficiência)",
+        "explanation": (
+            "Criação de comércio: um acordo preferencial leva um membro a importar de um "
+            "parceiro mais eficiente em vez de produzir ineficientemente em casa — um "
+            "ganho de bem-estar. Desvio de comércio: o acordo faz o membro substituir "
+            "importações de um NÃO-membro mais eficiente (agora sujeito à tarifa externa) "
+            "por importações de um membro MENOS eficiente (com tarifa zero preferencial) — "
+            "uma perda de bem-estar, pois os recursos se deslocam para uma fonte de maior "
+            "custo apenas pela preferência tarifária, e não por eficiência genuína."
+        ),
+    },
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "Por que o efeito líquido de bem-estar de uma união aduaneira ou área de livre "
+            "comércio sobre os países-membros é, em geral, considerado AMBÍGUO do ponto de "
+            "vista teórico, podendo ser positivo ou negativo?"
+        ),
+        "options": [
+            "A) Porque uniões aduaneiras são sempre benéficas, sem exceção, segundo qualquer modelo teórico",
+            "B) Porque o resultado depende do balanço entre os efeitos de criação de comércio (que aumentam o bem-estar) e desvio de comércio (que reduzem o bem-estar); se a criação predominar, o efeito tende a ser positivo; se o desvio predominar, pode ser negativo, mesmo que o comércio TOTAL entre os membros aumente",
+            "C) Porque a OMC proíbe qualquer análise de bem-estar sobre uniões aduaneiras",
+            "D) Porque o efeito depende exclusivamente da taxa de câmbio entre os países membros",
+        ],
+        "answer": "B) Porque o resultado depende do balanço entre os efeitos de criação de comércio (que aumentam o bem-estar) e desvio de comércio (que reduzem o bem-estar); se a criação predominar, o efeito tende a ser positivo; se o desvio predominar, pode ser negativo, mesmo que o comércio TOTAL entre os membros aumente",
+        "explanation": (
+            "O arcabouço de Viner mostra que o efeito de bem-estar de acordos comerciais "
+            "preferenciais é teoricamente ambíguo porque combina dois efeitos opostos: "
+            "criação de comércio (realocação que aumenta a eficiência, em direção a um "
+            "parceiro mais eficiente) versus desvio de comércio (realocação que reduz a "
+            "eficiência, afastando-se de um não-membro mais eficiente). Se a integração "
+            "regional aumenta ou reduz o bem-estar agregado depende do equilíbrio empírico "
+            "entre essas forças, que por sua vez depende de fatores como a altura da "
+            "tarifa externa e a eficiência relativa de membros versus não-membros."
+        ),
+    },
+    {
+        "topic": "OMC e Desenvolvimento",
+        "question": (
+            "Entre os debates contemporâneos sobre globalização e protecionismo, qual "
+            "argumento é frequentemente levantado em relação ao impacto do comércio com "
+            "países de baixos salários sobre os trabalhadores de baixa qualificação em "
+            "países desenvolvidos?"
+        ),
+        "options": [
+            "A) O comércio internacional nunca tem qualquer efeito sobre salários relativos dentro de um país, segundo qualquer modelo teórico",
+            "B) Argumenta-se que o aumento do comércio (e do offshoring) com países de mão de obra abundante e barata pode contribuir para pressionar para baixo os salários relativos ou o emprego de trabalhadores menos qualificados em países desenvolvidos, embora exista debate acadêmico sobre o peso relativo do comércio versus outros fatores, como mudança tecnológica, nesse fenômeno",
+            "C) O comércio sempre beneficia igualmente todos os grupos de trabalhadores, sem qualquer efeito distributivo",
+            "D) O argumento é unanimemente rejeitado por todos os economistas, sem qualquer base empírica ou teórica",
+        ],
+        "answer": "B) Argumenta-se que o aumento do comércio (e do offshoring) com países de mão de obra abundante e barata pode contribuir para pressionar para baixo os salários relativos ou o emprego de trabalhadores menos qualificados em países desenvolvidos, embora exista debate acadêmico sobre o peso relativo do comércio versus outros fatores, como mudança tecnológica, nesse fenômeno",
+        "explanation": (
+            "Esse é um debate ativo e real na economia do comércio (relacionado a "
+            "previsões do tipo Stolper-Samuelson, baseadas em proporções de fatores): o "
+            "aumento do comércio e do offshoring com países em desenvolvimento abundantes "
+            "em mão de obra é um possível contribuinte para a pressão sobre salários ou "
+            "deslocamento de emprego entre trabalhadores menos qualificados em economias "
+            "avançadas, mas a literatura continua debatendo quanto das tendências "
+            "observadas de salário/emprego é atribuível ao comércio versus a mudanças "
+            "tecnológicas que favorecem mão de obra qualificada e outros fatores — um tema "
+            "central nas controvérsias contemporâneas sobre protecionismo e globalização."
         ),
     },
 ]
-# Q50 — adicionada para completar 50 questões
-QUESTIONS.append(
-    {
-        "topic": "Regularização",
-        "question": (
-            "O slide cita Neural Networks como 'inherently low-bias and high-variance learners'. "
-            "Qual afirmação resume corretamente o dilema que isso cria?"
-        ),
-        "options": [
-            "A) Redes neurais são sempre preferíveis a modelos lineares independente do tamanho do dataset",
-            "B) Redes neurais têm capacidade de aproximar qualquer função (baixo bias), mas com dados limitados essa complexidade se volta contra o modelo (alta variance), exigindo técnicas de regularização",
-            "C) A alta variance de redes neurais é irrelevante pois GPUs modernas compensam com mais épocas de treino",
-            "D) Redes neurais têm baixo bias apenas quando usam ReLU como função de ativação",
-        ],
-        "answer": "B) Redes neurais têm capacidade de aproximar qualquer função (baixo bias), mas com dados limitados essa complexidade se volta contra o modelo (alta variance), exigindo técnicas de regularização",
-        "explanation": (
-            "O slide afirma: 'Neural networks are inherently low-bias and high-variance "
-            "learners ⇒ Need ways of handling complexity'. Uma rede grande pode memorizar "
-            "qualquer dataset de treino (bias ≈ 0), mas memorização de nuances do treino "
-            "não generaliza. Por isso todo o restante da aula foca em técnicas para "
-            "reduzir a variance: L1/L2, Dropout, Early Stopping, Bagging, etc."
-        ),
-    }
-)
