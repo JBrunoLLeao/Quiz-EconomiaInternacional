@@ -3,7 +3,7 @@ from questions import QUESTIONS
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Quiz · CNN / RNN / Regularização",
+    page_title="Quiz · Economia Internacional (Krugman)",
     layout="centered",
 )
 
@@ -79,9 +79,11 @@ html, body, [class*="css"] {
     font-weight: 600;
     margin-left: 8px;
 }
-.tag-cnn  { background: #1e3a5f; color: #7dd3fc; }
-.tag-rnn  { background: #2d1f5e; color: #c4b5fd; }
-.tag-reg  { background: #1a3d2e; color: #6ee7b7; }
+.tag-mp   { background: #1e3a5f; color: #7dd3fc; }
+.tag-esc  { background: #2d1f5e; color: #c4b5fd; }
+.tag-pol  { background: #1a3d2e; color: #6ee7b7; }
+.tag-eco  { background: #4a2e12; color: #fdba74; }
+.tag-omc  { background: #4a1942; color: #f9a8d4; }
 .q-text {
     font-size: 1.05rem;
     font-weight: 500;
@@ -213,8 +215,8 @@ TOTAL = len(QUESTIONS)
 # ── Hero ──────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="hero">
-  <h1>Quiz · Deep Learning</h1>
-  <p>50 perguntas sobre <strong>CNN</strong>, <strong>RNN</strong> e <strong>Regularização</strong> — leia com atenção!</p>
+  <h1>Quiz · Economia Internacional</h1>
+  <p>50 perguntas baseadas em Krugman — <strong>Modelo Padrão</strong>, <strong>Economias de Escala</strong>, <strong>Política Comercial</strong>, <strong>Economia Política</strong> e <strong>OMC/Desenvolvimento</strong> — leia com atenção!</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -278,7 +280,13 @@ st.markdown(f"""
 
 # ── Current question ──────────────────────────────────────────────────────────
 q = QUESTIONS[idx]
-tag_class = {"CNN":"tag-cnn","RNN":"tag-rnn","Regularização":"tag-reg"}.get(q["topic"],"tag-cnn")
+tag_class = {
+    "Modelo Padrão": "tag-mp",
+    "Escala e Concorrência": "tag-esc",
+    "Política Comercial": "tag-pol",
+    "Economia Política": "tag-eco",
+    "OMC e Desenvolvimento": "tag-omc",
+}.get(q["topic"], "tag-mp")
 
 st.markdown(f"""
 <div class="q-card">
